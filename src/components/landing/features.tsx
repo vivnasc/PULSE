@@ -9,87 +9,87 @@ import {
 const features = [
   {
     icon: Bot,
-    title: "AI Avatar",
-    description: "Chat with someone's AI twin before matching. Test chemistry without wasting anyone's time.",
+    title: "Avatar IA",
+    description: "Conversa com o gémeo digital de alguém antes de dar match. Testa a química sem desperdiçar o tempo de ninguém.",
     gradient: "from-violet-500 to-purple-500",
-    tag: "Revolutionary",
+    tag: "Revolucionário",
   },
   {
     icon: Mic,
-    title: "Voice Cloning",
-    description: "Each match gets a unique voice message in YOUR voice, personalized to their interests.",
+    title: "Clonagem de Voz",
+    description: "Cada match recebe uma mensagem de voz NA TUA VOZ, personalizada aos interesses deles. Magia pura.",
     gradient: "from-[#FF3B5C] to-[#FF5E9C]",
-    tag: "Unique",
+    tag: "Único",
   },
   {
     icon: Brain,
-    title: "Emotion AI",
-    description: "Real-time emotional mapping of your conversations. See chemistry scores and connection peaks.",
-    gradient: "from-[#FF5E9C] to-amber-500",
-    tag: "Smart",
+    title: "IA Emocional",
+    description: "Mapeamento emocional em tempo real das tuas conversas. Vê scores de química e picos de conexão.",
+    gradient: "from-orange-500 to-amber-500",
+    tag: "Inteligente",
   },
   {
     icon: MessageCircle,
-    title: "AI Date Coach",
-    description: "24/7 wingman analyzing your chats in real-time with subtle, helpful suggestions.",
+    title: "Coach de Encontros",
+    description: "Um wingman 24/7 que analisa as tuas conversas em tempo real com sugestões subtis e úteis.",
     gradient: "from-emerald-500 to-teal-500",
-    tag: "Helpful",
+    tag: "Útil",
   },
   {
     icon: Target,
-    title: "Predictive Compatibility",
-    description: "AI forecasts your relationship potential: from 2nd date probability to 6-month outlook.",
+    title: "Compatibilidade Preditiva",
+    description: "A IA prevê o potencial da relação: probabilidade de 2º encontro até previsão de 6 meses.",
     gradient: "from-blue-500 to-cyan-500",
-    tag: "Predictive",
+    tag: "Preditivo",
   },
   {
     icon: Globe,
-    title: "Seamless Translation",
-    description: "Date across languages. 150+ languages with tone, humor, and personality preserved.",
+    title: "Tradução Instantânea",
+    description: "Namora sem barreiras linguísticas. 150+ línguas com tom, humor e personalidade preservados.",
     gradient: "from-[#FF5E9C] to-[#FF3B5C]",
     tag: "Global",
   },
   {
     icon: Lightbulb,
-    title: "Smart Date Ideas",
-    description: "AI generates unique date itineraries based on both profiles, budget, weather, and location.",
+    title: "Ideias de Encontro",
+    description: "A IA cria roteiros de encontro únicos baseados nos dois perfis, orçamento, clima e localização.",
     gradient: "from-amber-500 to-yellow-500",
-    tag: "Creative",
+    tag: "Criativo",
   },
   {
     icon: GraduationCap,
-    title: "Post-Date Debrief",
-    description: "AI therapist after every date. Honest insights, red flag detection, compatibility updates.",
+    title: "Debrief Pós-Encontro",
+    description: "Terapeuta IA após cada encontro. Insights honestos, deteção de red flags, atualizações de compatibilidade.",
     gradient: "from-indigo-500 to-violet-500",
-    tag: "Insightful",
+    tag: "Revelador",
   },
   {
     icon: Video,
-    title: "Video Analysis",
-    description: "AI reads body language, microexpressions, and energy from video prompts. Zero catfishing.",
+    title: "Análise de Vídeo",
+    description: "A IA lê linguagem corporal, microexpressões e energia nos vídeos. Zero catfishing.",
     gradient: "from-teal-500 to-emerald-500",
-    tag: "Secure",
+    tag: "Seguro",
   },
   {
     icon: Heart,
-    title: "AI Matchmaker",
-    description: "Not a passive algorithm. An active agent that learns you deeply and hunts for your person.",
+    title: "Matchmaker IA",
+    description: "Não é um algoritmo passivo. É um agente ativo que te conhece profundamente e procura a tua pessoa.",
     gradient: "from-[#FF3B5C] to-red-500",
-    tag: "Personal",
+    tag: "Pessoal",
   },
   {
     icon: Sparkles,
-    title: "Dream Date Simulator",
-    description: "Practice before the real thing. AI simulates your date based on their profile.",
+    title: "Simulador de Encontros",
+    description: "Pratica antes do encontro real. A IA simula o teu date com base no perfil da outra pessoa.",
     gradient: "from-purple-500 to-[#FF5E9C]",
     tag: "Premium",
   },
   {
     icon: Shield,
-    title: "Multi-Layer Verification",
-    description: "Selfie liveness, facial recognition, voice verification, and behavioral analysis. 99.9% real profiles.",
+    title: "Verificação Multi-Camada",
+    description: "Selfie ao vivo, reconhecimento facial, verificação de voz e análise comportamental. 99.9% perfis reais.",
     gradient: "from-sky-500 to-blue-500",
-    tag: "Safe",
+    tag: "Seguro",
   },
 ];
 
@@ -104,13 +104,13 @@ export function Features() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl font-bold text-white sm:text-5xl">
-            Features that{" "}
+            12 funcionalidades que{" "}
             <span className="gradient-text">
-              change everything
+              mudam tudo
             </span>
           </h2>
           <p className="mt-4 text-lg text-white/50 max-w-2xl mx-auto">
-            12 AI-powered innovations that no other dating app has. This is not an upgrade — it&apos;s a new category.
+            Inovações com IA que nenhum outro app de dating tem. Isto não é um upgrade — é uma nova categoria.
           </p>
         </motion.div>
 

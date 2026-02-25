@@ -88,7 +88,7 @@ export default function ChatPage() {
         <div className="text-center mb-4">
           <Badge variant="secondary" className="text-xs">
             <Heart className="h-3 w-3 mr-1 text-[#FF3B5C]" />
-            Chemistry: High — Conversation flowing naturally
+            Química: Alta — Conversa a fluir naturalmente
           </Badge>
         </div>
 
@@ -118,7 +118,7 @@ export default function ChatPage() {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
-            placeholder="Type a message..."
+            placeholder="Escreve uma mensagem..."
             className="flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#FF3B5C]/30"
           />
           {newMessage ? (

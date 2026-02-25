@@ -5,11 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#how-it-works", label: "How it Works" },
-  { href: "#pricing", label: "Pricing" },
+  { href: "#features", label: "Funcionalidades" },
+  { href: "#how-it-works", label: "Como Funciona" },
+  { href: "#pricing", label: "Planos" },
 ];
 
 export function Navbar() {
@@ -19,8 +20,8 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50">
       <div className="border-b border-white/5 backdrop-blur-xl" style={{ background: "rgba(14, 15, 20, 0.8)" }}>
         <div className="mx-auto max-w-7xl px-4 flex items-center justify-between h-16">
-          <Link href="/" className="text-xl font-bold pulse-gradient-text">
-            PULSE
+          <Link href="/" className="flex items-center">
+            <Image src="/PULSE.logo.name.png" alt="PULSE" width={120} height={40} className="h-8 w-auto" priority />
           </Link>
 
           {/* Desktop */}
@@ -38,10 +39,10 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center gap-3">
             <Link href="/auth/login">
-              <Button variant="ghost" size="sm">Log in</Button>
+              <Button variant="ghost" size="sm">Entrar</Button>
             </Link>
             <Link href="/auth/register">
-              <Button size="sm">Get Started</Button>
+              <Button size="sm">Criar Conta</Button>
             </Link>
           </div>
 
@@ -78,10 +79,10 @@ export function Navbar() {
               ))}
               <div className="pt-3 flex flex-col gap-2">
                 <Link href="/auth/login">
-                  <Button variant="outline" className="w-full">Log in</Button>
+                  <Button variant="outline" className="w-full">Entrar</Button>
                 </Link>
                 <Link href="/auth/register">
-                  <Button className="w-full">Get Started</Button>
+                  <Button className="w-full">Criar Conta</Button>
                 </Link>
               </div>
             </div>

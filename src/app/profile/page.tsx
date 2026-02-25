@@ -27,7 +27,7 @@ export default function ProfilePage() {
     <AppLayout>
       <div className="mx-auto max-w-md px-4 pt-4 pb-8">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-white">Profile</h1>
+          <h1 className="text-2xl font-bold text-white">Perfil</h1>
           <Link href="/settings"><Button variant="ghost" size="icon" className="h-9 w-9"><Settings className="h-4 w-4" /></Button></Link>
         </div>
 
@@ -43,17 +43,17 @@ export default function ProfilePage() {
             <MapPin className="h-3 w-3" /><span>{profile.location}</span>
           </div>
           <div className="mt-2 flex items-center justify-center gap-2">
-            <Badge variant="secondary">Spark (Free)</Badge>
+            <Badge variant="secondary">Spark (Grátis)</Badge>
             {profile.verified && <Badge variant="success"><Shield className="h-3 w-3 mr-1" />Verified</Badge>}
           </div>
           <div className="flex items-center justify-center gap-3 mt-4">
-            <Link href="/profile/edit"><Button variant="outline" size="sm"><Edit3 className="h-3.5 w-3.5 mr-1.5" />Edit Profile</Button></Link>
-            <Button variant="outline" size="sm"><Eye className="h-3.5 w-3.5 mr-1.5" />Preview</Button>
+            <Link href="/profile/edit"><Button variant="outline" size="sm"><Edit3 className="h-3.5 w-3.5 mr-1.5" />Editar Perfil</Button></Link>
+            <Button variant="outline" size="sm"><Eye className="h-3.5 w-3.5 mr-1.5" />Pré-visualizar</Button>
           </div>
         </div>
 
         <div className="grid grid-cols-3 gap-3 mb-6">
-          {[{ label: "Likes", value: profile.stats.likes, icon: Heart }, { label: "Matches", value: profile.stats.matches, icon: Sparkles }, { label: "Chats", value: profile.stats.conversations, icon: BarChart3 }].map((stat) => (
+          {[{ label: "Likes", value: profile.stats.likes, icon: Heart }, { label: "Matches", value: profile.stats.matches, icon: Sparkles }, { label: "Conversas", value: profile.stats.conversations, icon: BarChart3 }].map((stat) => (
             <Card key={stat.label}><CardContent className="p-3 text-center">
               <stat.icon className="h-4 w-4 mx-auto text-[#FF3B5C] mb-1" />
               <p className="text-lg font-bold text-white">{stat.value}</p>
@@ -63,7 +63,7 @@ export default function ProfilePage() {
         </div>
 
         <div className="mb-6">
-          <h3 className="text-sm font-medium text-white/60 mb-3">Photos</h3>
+          <h3 className="text-sm font-medium text-white/60 mb-3">Fotos</h3>
           <div className="grid grid-cols-3 gap-2">
             {[0, 1, 2, 3, 4, 5].map((i) => (
               <button key={i} className="aspect-[3/4] rounded-xl border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
@@ -74,14 +74,14 @@ export default function ProfilePage() {
         </div>
 
         <div className="mb-6">
-          <h3 className="text-sm font-medium text-white/60 mb-3">Voice Note</h3>
+          <h3 className="text-sm font-medium text-white/60 mb-3">Nota de Voz</h3>
           <button className="w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center gap-3 hover:bg-white/10 transition-colors">
             <div className="h-10 w-10 rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] flex items-center justify-center">
               <Mic className="h-5 w-5 text-white" />
             </div>
             <div className="text-left">
-              <p className="text-sm text-white">Record your voice note</p>
-              <p className="text-xs text-white/40">15-30 seconds. Let matches hear you.</p>
+              <p className="text-sm text-white">Grava a tua nota de voz</p>
+              <p className="text-xs text-white/40">15-30 seg. Deixa os matches ouvirem-te.</p>
             </div>
           </button>
         </div>
@@ -99,7 +99,7 @@ export default function ProfilePage() {
         </div>
 
         <div className="mb-6">
-          <h3 className="text-sm font-medium text-white/60 mb-3">Interests</h3>
+          <h3 className="text-sm font-medium text-white/60 mb-3">Interesses</h3>
           <div className="flex flex-wrap gap-2">
             {profile.interests.map((interest) => (<Badge key={interest} variant="secondary">{interest}</Badge>))}
           </div>
@@ -109,9 +109,9 @@ export default function ProfilePage() {
           <Card className="border-[#FF3B5C]/20 bg-gradient-to-r from-[#FF3B5C]/5 to-[#FF5E9C]/5">
             <CardContent className="p-4 text-center">
               <Crown className="h-8 w-8 text-amber-400 mx-auto mb-2" />
-              <h3 className="font-semibold text-white">Unlock Premium Features</h3>
-              <p className="text-xs text-white/50 mt-1 mb-3">AI Date Coach, Voice Cloning, Unlimited Matches & more</p>
-              <Button size="sm">Upgrade to Flame<ChevronRight className="h-4 w-4 ml-1" /></Button>
+              <h3 className="font-semibold text-white">Desbloqueia Funcionalidades Premium</h3>
+              <p className="text-xs text-white/50 mt-1 mb-3">Coach IA, Clonagem de Voz, Matches Ilimitados e mais</p>
+              <Button size="sm">Upgrade para Flame<ChevronRight className="h-4 w-4 ml-1" /></Button>
             </CardContent>
           </Card>
         )}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,12 +12,7 @@ import { Mail, Lock, User, Eye, EyeOff, Calendar } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    displayName: "",
-    birthDate: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "", displayName: "", birthDate: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -26,14 +22,13 @@ export default function RegisterPage() {
     setError("");
     setLoading(true);
 
-    // Age validation
     const birth = new Date(formData.birthDate);
     const today = new Date();
     let age = today.getFullYear() - birth.getFullYear();
     const m = today.getMonth() - birth.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
     if (age < 18) {
-      setError("You must be at least 18 years old.");
+      setError("Tens de ter pelo menos 18 anos.");
       setLoading(false);
       return;
     }
@@ -43,10 +38,7 @@ export default function RegisterPage() {
       email: formData.email,
       password: formData.password,
       options: {
-        data: {
-          display_name: formData.displayName,
-          birth_date: formData.birthDate,
-        },
+        data: { display_name: formData.displayName, birth_date: formData.birthDate },
       },
     });
 
@@ -65,9 +57,7 @@ export default function RegisterPage() {
     const supabase = createClient();
     await supabase.auth.signInWithOAuth({
       provider,
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
+      options: { redirectTo: `${window.location.origin}/auth/callback` },
     });
   };
 
@@ -78,75 +68,32 @@ export default function RegisterPage() {
         <div className="absolute bottom-1/4 -left-32 h-64 w-64 rounded-full bg-[#FF3B5C]/10 blur-[100px]" />
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative w-full max-w-md"
-      >
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/">
-            <h1 className="text-3xl font-bold pulse-gradient-text">
-              PULSE
-            </h1>
+            <Image src="/PULSE.logo.name.png" alt="PULSE" width={160} height={56} className="mx-auto h-14 w-auto" priority />
           </Link>
-          <p className="text-white/50 mt-2">Create your account. Start connecting.</p>
+          <p className="text-white/50 mt-3">Cria a tua conta. Começa a conectar.</p>
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6">
           <form onSubmit={handleRegister} className="space-y-4">
             <div className="relative">
               <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
-              <Input
-                type="text"
-                placeholder="Display name"
-                value={formData.displayName}
-                onChange={(e) => setFormData({ ...formData, displayName: e.target.value })}
-                className="pl-10"
-                required
-                minLength={2}
-              />
+              <Input type="text" placeholder="Nome" value={formData.displayName} onChange={(e) => setFormData({ ...formData, displayName: e.target.value })} className="pl-10" required minLength={2} />
             </div>
-
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
-              <Input
-                type="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="pl-10"
-                required
-              />
+              <Input type="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="pl-10" required />
             </div>
-
             <div className="relative">
               <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
-              <Input
-                type="date"
-                placeholder="Date of birth"
-                value={formData.birthDate}
-                onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
-                className="pl-10"
-                required
-              />
+              <Input type="date" placeholder="Data de nascimento" value={formData.birthDate} onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })} className="pl-10" required />
             </div>
-
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
-              <Input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password (min 8 characters)"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="pl-10 pr-10"
-                required
-                minLength={8}
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60"
-              >
+              <Input type={showPassword ? "text" : "password"} placeholder="Palavra-passe (mín. 8 caracteres)" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} className="pl-10 pr-10" required minLength={8} />
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60">
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
             </div>
@@ -154,17 +101,17 @@ export default function RegisterPage() {
             {error && <p className="text-sm text-red-400">{error}</p>}
 
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Creating account..." : "Create Account"}
+              {loading ? "A criar conta..." : "Criar Conta"}
             </Button>
 
             <p className="text-xs text-white/30 text-center">
-              By signing up, you agree to our Terms of Service and Privacy Policy. Must be 18+.
+              Ao registar-te, aceitas os Termos de Serviço e Política de Privacidade. Tens de ter 18+.
             </p>
           </form>
 
           <div className="my-6 flex items-center gap-3">
             <div className="h-px flex-1 bg-white/10" />
-            <span className="text-xs text-white/30">or continue with</span>
+            <span className="text-xs text-white/30">ou continuar com</span>
             <div className="h-px flex-1 bg-white/10" />
           </div>
 
@@ -181,10 +128,8 @@ export default function RegisterPage() {
         </div>
 
         <p className="text-center mt-6 text-sm text-white/40">
-          Already have an account?{" "}
-          <Link href="/auth/login" className="text-[#FF3B5C] hover:text-[#FF5E9C]">
-            Sign in
-          </Link>
+          Já tens conta?{" "}
+          <Link href="/auth/login" className="text-[#FF3B5C] hover:text-[#FF5E9C]">Entrar</Link>
         </p>
       </motion.div>
     </div>

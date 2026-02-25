@@ -18,10 +18,10 @@ type Step = "gender" | "preference" | "photos" | "prompts" | "voice" | "location
 const STEPS: Step[] = ["gender", "preference", "photos", "prompts", "voice", "location", "interests", "complete"];
 
 const GENDER_OPTIONS = [
-  { value: "male", label: "Man", emoji: "👨" },
-  { value: "female", label: "Woman", emoji: "👩" },
-  { value: "non_binary", label: "Non-binary", emoji: "🧑" },
-  { value: "other", label: "Other", emoji: "✨" },
+  { value: "male", label: "Homem", emoji: "👨" },
+  { value: "female", label: "Mulher", emoji: "👩" },
+  { value: "non_binary", label: "Não-binário", emoji: "🧑" },
+  { value: "other", label: "Outro", emoji: "✨" },
 ];
 
 const INTEREST_OPTIONS = [
@@ -32,10 +32,10 @@ const INTEREST_OPTIONS = [
 ];
 
 const RELATIONSHIP_TYPES = [
-  { value: "serious", label: "Long-term relationship", emoji: "💍" },
-  { value: "casual", label: "Something casual", emoji: "✌️" },
-  { value: "friendship", label: "New friends", emoji: "🤝" },
-  { value: "open", label: "Open to anything", emoji: "🌈" },
+  { value: "serious", label: "Relação séria", emoji: "💍" },
+  { value: "casual", label: "Algo casual", emoji: "✌️" },
+  { value: "friendship", label: "Novos amigos", emoji: "🤝" },
+  { value: "open", label: "Aberto a tudo", emoji: "🌈" },
 ];
 
 export default function OnboardingPage() {
@@ -169,8 +169,8 @@ export default function OnboardingPage() {
               {/* Gender */}
               {step === "gender" && (
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-2">I am a...</h2>
-                  <p className="text-white/50 mb-6">How do you identify?</p>
+                  <h2 className="text-2xl font-bold text-white mb-2">Eu sou...</h2>
+                  <p className="text-white/50 mb-6">Como te identificas?</p>
                   <div className="grid grid-cols-2 gap-3">
                     {GENDER_OPTIONS.map((opt) => (
                       <button
@@ -193,8 +193,8 @@ export default function OnboardingPage() {
               {/* Preference */}
               {step === "preference" && (
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-2">I&apos;m interested in...</h2>
-                  <p className="text-white/50 mb-4">Select all that apply</p>
+                  <h2 className="text-2xl font-bold text-white mb-2">Tenho interesse em...</h2>
+                  <p className="text-white/50 mb-4">Seleciona todos os que se aplicam</p>
                   <div className="grid grid-cols-2 gap-3 mb-6">
                     {GENDER_OPTIONS.map((opt) => (
                       <button
@@ -217,7 +217,7 @@ export default function OnboardingPage() {
                     ))}
                   </div>
 
-                  <h3 className="text-lg font-semibold text-white mb-3">Looking for...</h3>
+                  <h3 className="text-lg font-semibold text-white mb-3">À procura de...</h3>
                   <div className="space-y-2">
                     {RELATIONSHIP_TYPES.map((type) => (
                       <button
@@ -240,8 +240,8 @@ export default function OnboardingPage() {
               {/* Photos */}
               {step === "photos" && (
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-2">Add photos</h2>
-                  <p className="text-white/50 mb-6">Show your best self. You can add more later.</p>
+                  <h2 className="text-2xl font-bold text-white mb-2">Adiciona fotos</h2>
+                  <p className="text-white/50 mb-6">Mostra o teu melhor. Podes adicionar mais depois.</p>
                   <div className="grid grid-cols-3 gap-3">
                     {[0, 1, 2, 3, 4, 5].map((i) => (
                       <button
@@ -257,7 +257,7 @@ export default function OnboardingPage() {
                     ))}
                   </div>
                   <p className="text-xs text-white/30 mt-4 text-center">
-                    Photos will be verified by AI to ensure they&apos;re really you.
+                    As fotos serão verificadas por IA para garantir que és tu.
                   </p>
                 </div>
               )}
@@ -265,8 +265,8 @@ export default function OnboardingPage() {
               {/* Prompts */}
               {step === "prompts" && (
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-2">Express yourself</h2>
-                  <p className="text-white/50 mb-6">Answer at least 1 creative prompt</p>
+                  <h2 className="text-2xl font-bold text-white mb-2">Expressa-te</h2>
+                  <p className="text-white/50 mb-6">Responde a pelo menos 1 prompt criativo</p>
                   <div className="space-y-4">
                     {[
                       CREATIVE_PROMPTS.personality[0],
@@ -276,7 +276,7 @@ export default function OnboardingPage() {
                       <div key={i}>
                         <label className="text-sm text-[#FF3B5C] font-medium">{prompt}</label>
                         <Textarea
-                          placeholder="Your answer..."
+                          placeholder="A tua resposta..."
                           className="mt-1"
                           rows={2}
                           onChange={(e) => {
@@ -304,14 +304,14 @@ export default function OnboardingPage() {
               {/* Voice */}
               {step === "voice" && (
                 <div className="text-center">
-                  <h2 className="text-2xl font-bold text-white mb-2">Record a voice note</h2>
-                  <p className="text-white/50 mb-8">Let matches hear your voice. 15-30 seconds.</p>
+                  <h2 className="text-2xl font-bold text-white mb-2">Grava uma nota de voz</h2>
+                  <p className="text-white/50 mb-8">Deixa os teus matches ouvirem a tua voz. 15-30 segundos.</p>
                   <button className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#FF3B5C] to-[#FF5E9C] shadow-lg shadow-[#FF3B5C]/25 hover:shadow-xl transition-all active:scale-95">
                     <Mic className="h-10 w-10 text-white" />
                   </button>
-                  <p className="mt-4 text-sm text-white/40">Tap to record</p>
+                  <p className="mt-4 text-sm text-white/40">Toca para gravar</p>
                   <p className="mt-2 text-xs text-white/30">
-                    Suggested: &quot;Describe your ideal Sunday&quot;
+                    Suggested: &quot;Descreve o teu domingo ideal&quot;
                   </p>
                 </div>
               )}
@@ -319,27 +319,27 @@ export default function OnboardingPage() {
               {/* Location */}
               {step === "location" && (
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-2">Where are you?</h2>
-                  <p className="text-white/50 mb-6">Help us find people near you.</p>
+                  <h2 className="text-2xl font-bold text-white mb-2">Onde estás?</h2>
+                  <p className="text-white/50 mb-6">Ajuda-nos a encontrar pessoas perto de ti.</p>
                   <div className="space-y-4">
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
                       <Input
-                        placeholder="City"
+                        placeholder="Cidade"
                         className="pl-10"
                         value={formData.location_city}
                         onChange={(e) => setFormData({ ...formData, location_city: e.target.value })}
                       />
                     </div>
                     <Input
-                      placeholder="Country"
+                      placeholder="País"
                       value={formData.location_country}
                       onChange={(e) => setFormData({ ...formData, location_country: e.target.value })}
                     />
 
                     <div>
                       <label className="text-sm text-white/60 mb-2 block">
-                        Age range: {formData.age_range_min} - {formData.age_range_max}
+                        Faixa etária: {formData.age_range_min} - {formData.age_range_max}
                       </label>
                       <div className="flex gap-3">
                         <Input
@@ -364,7 +364,7 @@ export default function OnboardingPage() {
 
                     <div>
                       <label className="text-sm text-white/60 mb-2 block">
-                        Max distance: {formData.max_distance_km}km
+                        Distância máxima: {formData.max_distance_km}km
                       </label>
                       <input
                         type="range"
@@ -382,9 +382,9 @@ export default function OnboardingPage() {
               {/* Interests */}
               {step === "interests" && (
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-2">Your interests</h2>
+                  <h2 className="text-2xl font-bold text-white mb-2">Os teus interesses</h2>
                   <p className="text-white/50 mb-6">
-                    Pick at least 3. This helps AI find better matches.
+                    Escolhe pelo menos 3. Isto ajuda a IA a encontrar melhores matches.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {INTEREST_OPTIONS.map((interest) => (
@@ -407,7 +407,7 @@ export default function OnboardingPage() {
                     ))}
                   </div>
                   <p className="text-xs text-white/30 mt-4">
-                    {formData.interests.length}/3 minimum selected
+                    {formData.interests.length}/3 mínimo selecionado
                   </p>
                 </div>
               )}
@@ -423,12 +423,12 @@ export default function OnboardingPage() {
                   >
                     <Sparkles className="h-10 w-10 text-white" />
                   </motion.div>
-                  <h2 className="text-2xl font-bold text-white mb-2">You&apos;re all set!</h2>
+                  <h2 className="text-2xl font-bold text-white mb-2">Estás pronto!</h2>
                   <p className="text-white/50 mb-8">
-                    Your AI matchmaker is ready. Let&apos;s find your person.
+                    O teu matchmaker IA está pronto. Vamos encontrar a tua pessoa.
                   </p>
                   <Button size="xl" onClick={handleComplete} disabled={loading}>
-                    {loading ? "Setting up..." : "Start Discovering"}
+                    {loading ? "A preparar..." : "Começar a Descobrir"}
                     <Heart className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
@@ -448,7 +448,7 @@ export default function OnboardingPage() {
               disabled={currentStep === 0}
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back
+              Voltar
             </Button>
 
             <span className="text-xs text-white/30">
@@ -459,7 +459,7 @@ export default function OnboardingPage() {
               onClick={handleNext}
               disabled={!canProceed()}
             >
-              {currentStep === STEPS.length - 2 ? "Finish" : "Next"}
+              {currentStep === STEPS.length - 2 ? "Concluir" : "Seguinte"}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>

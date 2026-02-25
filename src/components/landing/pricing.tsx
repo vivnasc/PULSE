@@ -12,66 +12,66 @@ const tiers = [
   {
     name: "Spark",
     icon: Zap,
-    description: "Start your journey",
+    description: "Começa a tua jornada",
     price: { monthly: 0, quarterly: 0, annual: 0 },
     features: [
-      "10 swipes per day",
-      "3 active matches",
-      "Basic chat (text only)",
-      "1 AI avatar conversation/week",
-      "Basic verification",
-      "Creative prompts",
-      "Voice note profile",
+      "10 swipes por dia",
+      "3 matches ativos",
+      "Chat básico (só texto)",
+      "1 conversa IA por semana",
+      "Verificação básica",
+      "Prompts criativos",
+      "Nota de voz no perfil",
     ],
-    cta: "Get Started Free",
+    cta: "Começar Grátis",
     gradient: "from-gray-500 to-gray-600",
     popular: false,
   },
   {
     name: "Flame",
     icon: Sparkles,
-    description: "For serious daters",
+    description: "Para quem leva a sério",
     price: { monthly: 14.99, quarterly: 38.99, annual: 143.88 },
     features: [
-      "Unlimited swipes & matches",
-      "Advanced chat (voice, photos, GIFs)",
-      "Unlimited AI avatar conversations",
-      "Voice cloning messages",
-      "AI Date Coach (real-time)",
-      "Emotion AI tracking",
-      "Predictive compatibility",
-      "Personal AI Matchmaker",
-      "See who liked you",
-      "5 boosts/month",
-      "Smart date ideas",
-      "Post-date AI debrief",
-      "Zero ads",
+      "Swipes e matches ilimitados",
+      "Chat avançado (voz, fotos, GIFs)",
+      "Conversas IA ilimitadas",
+      "Mensagens com clonagem de voz",
+      "Coach de encontros (tempo real)",
+      "Tracking emocional com IA",
+      "Compatibilidade preditiva",
+      "Matchmaker IA pessoal",
+      "Ver quem te deu like",
+      "5 boosts/mês",
+      "Ideias de encontro inteligentes",
+      "Debrief pós-encontro",
+      "Zero anúncios",
     ],
-    cta: "Upgrade to Flame",
-    gradient: "from-[#FF3B5C] via-[#FF5E9C] to-[#FF5E9C]",
+    cta: "Upgrade para Flame",
+    gradient: "from-[#E10600] via-[#FF3B5C] to-[#FF5E9C]",
     popular: true,
   },
   {
     name: "Blaze",
     icon: Crown,
-    description: "The ultimate experience",
+    description: "A experiência máxima",
     price: { monthly: 34.99, quarterly: 89.99, annual: 335.88 },
     features: [
-      "Everything in Flame",
-      "AI Concierge 24/7",
-      "Hyper-targeted matching",
-      "Advanced video analysis",
-      "Relationship forecast (6-12mo)",
-      "Unlimited Dream Date Simulator",
-      "Premium analytics dashboard",
-      "Ghost protection",
-      "Incognito mode",
-      "10 super boosts/month",
-      "VIP badge & priority support",
-      "Advanced filters (50+ criteria)",
+      "Tudo do Flame",
+      "Concierge IA 24/7",
+      "Matching hiper-personalizado",
+      "Análise avançada de vídeo",
+      "Previsão de relação (6-12 meses)",
+      "Simulador de encontros ilimitado",
+      "Dashboard de analytics premium",
+      "Proteção anti-ghosting",
+      "Modo incógnito",
+      "10 super boosts/mês",
+      "Badge VIP e suporte prioritário",
+      "Filtros avançados (50+ critérios)",
     ],
-    cta: "Go Blaze",
-    gradient: "from-amber-400 via-yellow-500 to-[#FF5E9C]",
+    cta: "Ir de Blaze",
+    gradient: "from-amber-400 via-yellow-500 to-orange-500",
     popular: false,
   },
 ];
@@ -80,9 +80,15 @@ export function Pricing() {
   const [billing, setBilling] = useState<BillingPeriod>("monthly");
 
   const getSavings = (period: BillingPeriod) => {
-    if (period === "quarterly") return "10% OFF";
-    if (period === "annual") return "20% OFF";
+    if (period === "quarterly") return "-10%";
+    if (period === "annual") return "-20%";
     return null;
+  };
+
+  const periodLabels: Record<BillingPeriod, string> = {
+    monthly: "Mensal",
+    quarterly: "Trimestral",
+    annual: "Anual",
   };
 
   return (
@@ -95,14 +101,13 @@ export function Pricing() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl font-bold text-white sm:text-5xl">
-            Simple,{" "}
+            Preços{" "}
             <span className="gradient-text">
-              transparent
-            </span>{" "}
-            pricing
+              simples e transparentes
+            </span>
           </h2>
           <p className="mt-4 text-lg text-white/50">
-            Start free. Upgrade when you&apos;re ready for more.
+            Começa grátis. Faz upgrade quando quiseres mais.
           </p>
         </motion.div>
 
@@ -118,7 +123,7 @@ export function Pricing() {
                   : "text-white/40 hover:text-white/60"
               }`}
             >
-              {period.charAt(0).toUpperCase() + period.slice(1)}
+              {periodLabels[period]}
               {getSavings(period) && (
                 <span className="ml-1.5 text-xs text-emerald-400">{getSavings(period)}</span>
               )}
@@ -143,7 +148,7 @@ export function Pricing() {
             >
               {tier.popular && (
                 <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  Most Popular
+                  Mais Popular
                 </Badge>
               )}
 
@@ -158,11 +163,11 @@ export function Pricing() {
 
               <div className="mt-4 mb-6">
                 <span className="text-4xl font-bold text-white">
-                  {tier.price[billing] === 0 ? "Free" : `$${tier.price[billing]}`}
+                  {tier.price[billing] === 0 ? "Grátis" : `$${tier.price[billing]}`}
                 </span>
                 {tier.price[billing] > 0 && (
                   <span className="text-white/40 text-sm">
-                    /{billing === "monthly" ? "mo" : billing === "quarterly" ? "3mo" : "yr"}
+                    /{billing === "monthly" ? "mês" : billing === "quarterly" ? "3 meses" : "ano"}
                   </span>
                 )}
               </div>

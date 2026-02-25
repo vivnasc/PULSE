@@ -106,14 +106,14 @@ export default function EditProfilePage() {
         >
           <ArrowLeft className="h-5 w-5" />
         </button>
-        <h1 className="text-lg font-semibold text-white">Edit Profile</h1>
+        <h1 className="text-lg font-semibold text-white">Editar Perfil</h1>
         <Button size="sm" onClick={handleSave} disabled={saving}>
           {saving ? (
-            "Saving..."
+            "A guardar..."
           ) : (
             <>
               <Save className="h-3.5 w-3.5 mr-1" />
-              Save
+              Guardar
             </>
           )}
         </Button>
@@ -123,8 +123,8 @@ export default function EditProfilePage() {
         {/* Photos */}
         <section>
           <h3 className="text-sm font-medium text-white/60 mb-3">
-            Photos
-            <span className="text-white/30 ml-1">(drag to reorder)</span>
+            Fotos
+            <span className="text-white/30 ml-1">(arrasta para reordenar)</span>
           </h3>
           <div className="grid grid-cols-3 gap-2">
             {[0, 1, 2, 3, 4, 5].map((i) => (
@@ -140,7 +140,7 @@ export default function EditProfilePage() {
                 <Camera className="h-6 w-6 text-white/30" />
                 {i === 0 && (
                   <span className="absolute bottom-1 text-[10px] text-[#FF3B5C] font-medium">
-                    Main
+                    Principal
                   </span>
                 )}
                 <div className="absolute top-1 right-1 opacity-0 hover:opacity-100 transition-opacity">
@@ -150,19 +150,19 @@ export default function EditProfilePage() {
             ))}
           </div>
           <p className="text-xs text-white/30 mt-2">
-            Add up to 6 photos. First photo is your main profile picture.
+            Até 6 fotos. A primeira é a foto principal do perfil.
           </p>
         </section>
 
         {/* Display name */}
         <section>
           <label className="text-sm font-medium text-white/60 mb-2 block">
-            Display Name
+            Nome
           </label>
           <Input
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
-            placeholder="Your name"
+            placeholder="O teu nome"
             maxLength={30}
           />
         </section>
@@ -171,12 +171,12 @@ export default function EditProfilePage() {
         <section>
           <label className="text-sm font-medium text-white/60 mb-2 block">
             Bio{" "}
-            <span className="text-white/30">(optional, max 300 chars)</span>
+            <span className="text-white/30">(opcional, máx. 300 caracteres)</span>
           </label>
           <Textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
-            placeholder="Tell people about yourself..."
+            placeholder="Fala sobre ti..."
             maxLength={300}
             rows={3}
           />
@@ -188,7 +188,7 @@ export default function EditProfilePage() {
         {/* Voice note */}
         <section>
           <h3 className="text-sm font-medium text-white/60 mb-3">
-            Voice Note
+            Nota de Voz
           </h3>
           <button className="w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center gap-3 hover:bg-white/10 transition-colors">
             <div className="h-12 w-12 rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] flex items-center justify-center shadow-lg shadow-[#FF3B5C]/20">
@@ -196,10 +196,10 @@ export default function EditProfilePage() {
             </div>
             <div className="text-left">
               <p className="text-sm text-white font-medium">
-                Record voice note
+                Gravar nota de voz
               </p>
               <p className="text-xs text-white/40">
-                15-30 sec. Let matches hear your voice.
+                15-30 seg. Deixa os matches ouvirem a tua voz.
               </p>
             </div>
           </button>
@@ -210,7 +210,7 @@ export default function EditProfilePage() {
           <h3 className="text-sm font-medium text-white/60 mb-3">
             Prompts
             <span className="text-white/30 ml-1">
-              (answer at least 2)
+              (responde a pelo menos 2)
             </span>
           </h3>
           <div className="space-y-3">
@@ -240,7 +240,7 @@ export default function EditProfilePage() {
                       };
                       setPrompts(newPrompts);
                     }}
-                    placeholder="Your answer..."
+                    placeholder="A tua resposta..."
                     rows={2}
                   />
                 </CardContent>
@@ -249,7 +249,7 @@ export default function EditProfilePage() {
 
             {prompts.length < 5 && (
               <div>
-                <p className="text-xs text-white/40 mb-2">Add a prompt:</p>
+                <p className="text-xs text-white/40 mb-2">Adicionar prompt:</p>
                 <div className="flex flex-wrap gap-1.5">
                   {allPrompts
                     .filter(
@@ -282,9 +282,9 @@ export default function EditProfilePage() {
         {/* Interests */}
         <section>
           <h3 className="text-sm font-medium text-white/60 mb-3">
-            Interests
+            Interesses
             <span className="text-white/30 ml-1">
-              ({interests.length} selected)
+              ({interests.length} selecionado(s))
             </span>
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -307,13 +307,13 @@ export default function EditProfilePage() {
         {/* Preferences */}
         <section>
           <h3 className="text-sm font-medium text-white/60 mb-3">
-            Discovery Preferences
+            Preferências de Descoberta
           </h3>
           <Card>
             <CardContent className="p-4 space-y-4">
               <div>
                 <label className="text-sm text-white/60 mb-2 block">
-                  Age range: 18 - 50
+                  Faixa etária: 18 - 50
                 </label>
                 <div className="flex gap-3 items-center">
                   <Input
@@ -335,7 +335,7 @@ export default function EditProfilePage() {
               </div>
               <div>
                 <label className="text-sm text-white/60 mb-2 block">
-                  Max distance: 50km
+                  Distância máxima: 50km
                 </label>
                 <input
                   type="range"
@@ -351,7 +351,7 @@ export default function EditProfilePage() {
 
         {/* Save button (bottom) */}
         <Button className="w-full" size="lg" onClick={handleSave} disabled={saving}>
-          {saving ? "Saving changes..." : "Save Changes"}
+          {saving ? "A guardar alterações..." : "Guardar Alterações"}
         </Button>
       </div>
     </div>

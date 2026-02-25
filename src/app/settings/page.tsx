@@ -54,70 +54,70 @@ export default function SettingsPage() {
 
   const sections: SettingSection[] = [
     {
-      title: "Account",
+      title: "Conta",
       items: [
         {
           icon: Crown,
-          label: "Subscription",
-          description: "Spark (Free)",
+          label: "Subscrição",
+          description: "Spark (Grátis)",
           href: "#",
           badge: "Upgrade",
         },
         {
           icon: Shield,
-          label: "Verification",
-          description: "Selfie verified",
+          label: "Verificação",
+          description: "Verificado por selfie",
           href: "#",
         },
-        { icon: Heart, label: "Relationship preferences", href: "#" },
+        { icon: Heart, label: "Preferências de relação", href: "#" },
       ],
     },
     {
-      title: "App Settings",
+      title: "Definições da App",
       items: [
         {
           icon: Bell,
-          label: "Notifications",
+          label: "Notificações",
           toggle: true,
           value: notifications,
           action: () => setNotifications(!notifications),
         },
         {
           icon: Moon,
-          label: "Dark Mode",
+          label: "Modo Escuro",
           toggle: true,
           value: darkMode,
           action: () => setDarkMode(!darkMode),
         },
         {
           icon: Smartphone,
-          label: "Data Saver",
+          label: "Economia de Dados",
           toggle: true,
           value: dataSaver,
           action: () => setDataSaver(!dataSaver),
         },
-        { icon: Globe, label: "Language", description: "Português" },
+        { icon: Globe, label: "Idioma", description: "Português" },
         {
           icon: Eye,
-          label: "Privacy",
-          description: "Visible to all",
+          label: "Privacidade",
+          description: "Visível para todos",
           href: "#",
         },
       ],
     },
     {
-      title: "Support",
+      title: "Suporte",
       items: [
-        { icon: HelpCircle, label: "Help & FAQ", href: "#" },
-        { icon: Shield, label: "Safety tips", href: "#" },
-        { icon: Globe, label: "Community guidelines", href: "#" },
+        { icon: HelpCircle, label: "Ajuda e FAQ", href: "#" },
+        { icon: Shield, label: "Dicas de segurança", href: "#" },
+        { icon: Globe, label: "Diretrizes da comunidade", href: "#" },
       ],
     },
     {
-      title: "Danger Zone",
+      title: "Zona de Perigo",
       items: [
-        { icon: LogOut, label: "Log out", action: handleLogout },
-        { icon: Trash2, label: "Delete account", href: "#", destructive: true },
+        { icon: LogOut, label: "Terminar sessão", action: handleLogout },
+        { icon: Trash2, label: "Apagar conta", href: "#", destructive: true },
       ],
     },
   ];
@@ -132,7 +132,7 @@ export default function SettingsPage() {
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
-          <h1 className="text-2xl font-bold text-white">Settings</h1>
+          <h1 className="text-2xl font-bold text-white">Definições</h1>
         </div>
 
         <div className="space-y-6">

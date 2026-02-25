@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,10 +24,7 @@ export default function LoginPage() {
     setLoading(true);
 
     const supabase = createClient();
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
       setError(error.message);
@@ -41,81 +39,47 @@ export default function LoginPage() {
     const supabase = createClient();
     await supabase.auth.signInWithOAuth({
       provider,
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
+      options: { redirectTo: `${window.location.origin}/auth/callback` },
     });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0E0F14] px-4">
-      {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/3 -left-32 h-64 w-64 rounded-full bg-[#FF3B5C]/10 blur-[100px]" />
         <div className="absolute bottom-1/3 -right-32 h-64 w-64 rounded-full bg-[#FF5E9C]/10 blur-[100px]" />
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative w-full max-w-md"
-      >
-        {/* Logo */}
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/">
-            <h1 className="text-3xl font-bold pulse-gradient-text">
-              PULSE
-            </h1>
+            <Image src="/PULSE.logo.name.png" alt="PULSE" width={160} height={56} className="mx-auto h-14 w-auto" priority />
           </Link>
-          <p className="text-white/50 mt-2">Welcome back. Feel the connection.</p>
+          <p className="text-white/50 mt-3">Bem-vindo de volta. Sente a conexão.</p>
         </div>
 
-        {/* Form */}
         <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6">
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
-              <Input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="pl-10"
-                required
-              />
+              <Input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="pl-10" required />
             </div>
-
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
-              <Input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="pl-10 pr-10"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60"
-              >
+              <Input type={showPassword ? "text" : "password"} placeholder="Palavra-passe" value={password} onChange={(e) => setPassword(e.target.value)} className="pl-10 pr-10" required />
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60">
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
             </div>
-
-            {error && (
-              <p className="text-sm text-red-400">{error}</p>
-            )}
-
+            {error && <p className="text-sm text-red-400">{error}</p>}
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Signing in..." : "Sign In"}
+              {loading ? "A entrar..." : "Entrar"}
             </Button>
           </form>
 
           <div className="my-6 flex items-center gap-3">
             <div className="h-px flex-1 bg-white/10" />
-            <span className="text-xs text-white/30">or continue with</span>
+            <span className="text-xs text-white/30">ou continuar com</span>
             <div className="h-px flex-1 bg-white/10" />
           </div>
 
@@ -132,10 +96,8 @@ export default function LoginPage() {
         </div>
 
         <p className="text-center mt-6 text-sm text-white/40">
-          Don&apos;t have an account?{" "}
-          <Link href="/auth/register" className="text-[#FF3B5C] hover:text-[#FF5E9C]">
-            Sign up
-          </Link>
+          Não tens conta?{" "}
+          <Link href="/auth/register" className="text-[#FF3B5C] hover:text-[#FF5E9C]">Criar conta</Link>
         </p>
       </motion.div>
     </div>

@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 import { Compass, MessageCircle, Heart, User } from "lucide-react";
 
 const navItems = [
-  { href: "/discover", icon: Compass, label: "Discover" },
+  { href: "/discover", icon: Compass, label: "Descobrir" },
   { href: "/matches", icon: Heart, label: "Matches" },
   { href: "/chat", icon: MessageCircle, label: "Chat" },
-  { href: "/profile", icon: User, label: "Profile" },
+  { href: "/profile", icon: User, label: "Perfil" },
 ];
 
 export function BottomNav() {

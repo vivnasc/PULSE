@@ -91,7 +91,7 @@ export default function MatchesPage() {
         {tab === "matches" && (
           <>
             <div className="mb-6">
-              <h3 className="text-sm font-medium text-white/50 mb-3">New Matches</h3>
+              <h3 className="text-sm font-medium text-white/50 mb-3">Novos Matches</h3>
               <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
                 {DEMO_MATCHES.filter((m) => m.isNew).map((match) => (
                   <Link key={match.id} href={`/chat/${match.id}`}>
@@ -121,7 +121,7 @@ export default function MatchesPage() {
 
             {/* Conversations */}
             <div>
-              <h3 className="text-sm font-medium text-white/50 mb-3">Conversations</h3>
+              <h3 className="text-sm font-medium text-white/50 mb-3">Conversas</h3>
               <div className="space-y-2">
                 {DEMO_MATCHES.filter((m) => m.lastMessage).map((match) => (
                   <Link key={match.id} href={`/chat/${match.id}`}>
@@ -164,14 +164,14 @@ export default function MatchesPage() {
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
-                      <p className="text-white/40 text-sm">Upgrade to see</p>
+                      <p className="text-white/40 text-sm">Faz upgrade para ver</p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
             <p className="text-center text-sm text-white/40 mt-4">
-              Upgrade to Flame to see who liked you
+              Faz upgrade para Flame para ver quem te deu like
             </p>
           </div>
         )}

@@ -2,31 +2,75 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "PULSE — Smart Dating. Real Chemistry.",
+  title: {
+    default: "PULSE — Dating Inteligente com IA",
+    template: "%s | PULSE",
+  },
   description:
-    "Not fast dating. Not slow dating. Smart dating. AI that learns you, finds your person, and coaches you to connection. Powered by Intelligence.",
+    "Não é mais um app de dating. É uma inteligência que te conhece, encontra quem combina contigo de verdade, e te ajuda a criar conexões reais. Sem ghosting. Sem superficialidade.",
   keywords: [
     "dating app",
+    "app de encontros",
     "AI dating",
-    "smart dating",
-    "matchmaking",
-    "AI matchmaker",
-    "dating",
-    "relationships",
+    "dating inteligente",
+    "matchmaking IA",
+    "namoro online",
     "PULSE",
+    "encontros Moçambique",
+    "dating Africa",
+    "app namoro",
+    "inteligência artificial",
+    "conexões reais",
   ],
+  authors: [{ name: "PULSE" }],
+  creator: "PULSE",
+  publisher: "PULSE",
   manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
     title: "PULSE",
   },
   openGraph: {
-    title: "PULSE — Smart Dating. Real Chemistry.",
+    title: "PULSE — Dating Inteligente com IA",
     description:
-      "AI-powered dating that learns you, finds your person, and coaches you to connection.",
+      "A IA que sente contigo. Encontra quem combina contigo de verdade, com matchmaking inteligente, coach de encontros, e conversas que importam.",
     type: "website",
     siteName: "PULSE",
+    locale: "pt_PT",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "PULSE — Dating Inteligente com IA",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PULSE — Dating Inteligente com IA",
+    description:
+      "Não é mais um app de dating. É uma inteligência que te conhece e te ajuda a criar conexões reais.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

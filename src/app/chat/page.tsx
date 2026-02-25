@@ -43,19 +43,19 @@ export default function ChatListPage() {
   return (
     <AppLayout>
       <div className="mx-auto max-w-md px-4 pt-4">
-        <h1 className="text-2xl font-bold text-white mb-4">Messages</h1>
+        <h1 className="text-2xl font-bold text-white mb-4">Mensagens</h1>
 
         <div className="relative mb-4">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
-          <Input placeholder="Search conversations..." className="pl-10" />
+          <Input placeholder="Pesquisar conversas..." className="pl-10" />
         </div>
 
         <div className="mb-4 rounded-xl border border-[#FF3B5C]/20 bg-[#FF3B5C]/5 p-3 flex items-start gap-2">
           <Sparkles className="h-4 w-4 text-[#FF3B5C] mt-0.5 shrink-0" />
           <div>
-            <p className="text-xs text-[#FF5E9C] font-medium">AI Coach Tip</p>
+            <p className="text-xs text-[#FF5E9C] font-medium">Dica do Coach IA</p>
             <p className="text-xs text-white/50 mt-0.5">
-              Sofia mentioned she loves photography. Ask about her latest photos to deepen the connection!
+              A Sofia mencionou que adora fotografia. Pergunta sobre as últimas fotos para aprofundar a conexão!
             </p>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function ChatListPage() {
                   </div>
                   <div className="flex items-center justify-between">
                     <p className="text-sm text-white/40 truncate">
-                      {chat.typing ? <span className="text-[#FF3B5C] italic">typing...</span> : chat.lastMessage}
+                      {chat.typing ? <span className="text-[#FF3B5C] italic">a escrever...</span> : chat.lastMessage}
                     </p>
                     {chat.unread > 0 && (
                       <span className="ml-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] text-[10px] font-bold text-white">
@@ -96,8 +96,8 @@ export default function ChatListPage() {
 
         {DEMO_CHATS.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-white/40">No conversations yet</p>
-            <p className="text-sm text-white/30 mt-1">Match with someone to start chatting</p>
+            <p className="text-white/40">Sem conversas ainda</p>
+            <p className="text-sm text-white/30 mt-1">Dá match com alguém para começar a conversar</p>
           </div>
         )}
       </div>

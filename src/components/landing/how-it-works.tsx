@@ -7,26 +7,26 @@ const steps = [
   {
     icon: UserPlus,
     number: "01",
-    title: "Create Your Profile",
-    description: "Answer creative prompts, record a voice note, upload photos. Your AI avatar is built automatically.",
+    title: "Cria o teu Perfil",
+    description: "Responde a prompts criativos, grava uma nota de voz, carrega fotos. O teu avatar IA é criado automaticamente.",
   },
   {
     icon: Sparkles,
     number: "02",
-    title: "AI Finds Your Matches",
-    description: "Our AI matchmaker learns what you truly want and actively searches for compatible people.",
+    title: "A IA Encontra os teus Matches",
+    description: "O nosso matchmaker IA aprende o que realmente queres e procura ativamente pessoas compatíveis.",
   },
   {
     icon: MessageCircle,
     number: "03",
-    title: "Chat with AI Avatars",
-    description: "Test chemistry by talking to their AI twin first. No wasted time, no awkward ghosting.",
+    title: "Conversa com Avatares IA",
+    description: "Testa a química conversando com o gémeo digital primeiro. Sem tempo perdido, sem ghosting constrangedor.",
   },
   {
     icon: Heart,
     number: "04",
-    title: "Connect for Real",
-    description: "When the vibe is right, match and meet. AI coaches you through the entire journey.",
+    title: "Conecta de Verdade",
+    description: "Quando a vibe estiver certa, dá match e encontra-te. A IA acompanha-te em toda a jornada.",
   },
 ];
 
@@ -41,14 +41,14 @@ export function HowItWorks() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl font-bold text-white sm:text-5xl">
-            How{" "}
+            Como o{" "}
             <span className="gradient-text">
               PULSE
             </span>{" "}
-            works
+            funciona
           </h2>
           <p className="mt-4 text-lg text-white/50">
-            From signup to your perfect date — in 4 simple steps.
+            Do registo ao encontro perfeito — em 4 passos simples.
           </p>
         </motion.div>
 

@@ -7,6 +7,7 @@ import { SwipeCard } from "@/components/discover/swipe-card";
 import { SwipeActions } from "@/components/discover/swipe-actions";
 import { Button } from "@/components/ui/button";
 import { SlidersHorizontal, Sparkles } from "lucide-react";
+import Image from "next/image";
 import type { Profile } from "@/types/database";
 
 // Demo profiles for development
@@ -99,9 +100,7 @@ export default function DiscoverPage() {
       <div className="relative mx-auto max-w-md px-4 pt-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-bold pulse-gradient-text">
-            PULSE
-          </h1>
+          <Image src="/PULSE.logo.name.png" alt="PULSE" width={100} height={36} className="h-7 w-auto" />
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" className="h-9 w-9">
               <Sparkles className="h-4 w-4 text-[#FF3B5C]" />
@@ -118,10 +117,10 @@ export default function DiscoverPage() {
             <div className="absolute inset-0 flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.02]">
               <Sparkles className="h-12 w-12 text-white/20 mb-4" />
               <p className="text-white/40 text-center px-8">
-                No more profiles for now. Check back later or expand your search.
+                Sem mais perfis por agora. Volta mais tarde ou expande a tua pesquisa.
               </p>
               <Button variant="outline" className="mt-4" onClick={() => setCurrentIndex(0)}>
-                Start Over
+                Recomeçar
               </Button>
             </div>
           ) : (
