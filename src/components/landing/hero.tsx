@@ -1,20 +1,35 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Sparkles, Heart, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+
+const frustrations = [
+  "Deste match. Conversaram 3 dias. Ghosting.",
+  "\"O que procuras aqui?\" pela milésima vez.",
+  "Perfis falsos. Bots. Fotos de 2019.",
+  "Swipe, swipe, swipe... vazio.",
+  "\"Não estou muito aqui, DM no Insta.\"",
+];
 
 export function Hero() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [frustrationIndex, setFrustrationIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFrustrationIndex((prev) => (prev + 1) % frustrations.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-
     try {
       await fetch("/api/waitlist", {
         method: "POST",
@@ -22,126 +37,109 @@ export function Hero() {
         body: JSON.stringify({ email }),
       });
     } catch {
-      // silently continue
+      // continue
     }
     setSubmitted(true);
   };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
-      {/* Animated background */}
+      {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, #0E0F14, #161822, #0E0F14)" }} />
         <motion.div
           className="absolute top-1/4 -left-32 h-96 w-96 rounded-full blur-[128px]"
-          style={{ background: "rgba(225, 6, 0, 0.15)" }}
-          animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 -right-32 h-96 w-96 rounded-full blur-[128px]"
-          style={{ background: "rgba(184, 51, 255, 0.12)" }}
-          animate={{ x: [0, -50, 0], y: [0, -30, 0] }}
+          style={{ background: "rgba(225, 6, 0, 0.12)" }}
+          animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-64 w-64 rounded-full blur-[100px]"
-          style={{ background: "rgba(255, 94, 156, 0.08)" }}
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 -right-32 h-96 w-96 rounded-full blur-[128px]"
+          style={{ background: "rgba(184, 51, 255, 0.1)" }}
+          animate={{ x: [0, -60, 0], y: [0, -40, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-4xl text-center">
-        {/* Badge */}
+      <div className="relative z-10 mx-auto max-w-3xl text-center">
+        {/* Rotating frustration — the hook */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="mb-10 h-8"
         >
-          <Sparkles className="h-4 w-4 text-[#00E5FF]" />
-          <span className="text-sm text-white/70">A IA que sente contigo.</span>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={frustrationIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.4 }}
+              className="text-white/40 text-sm sm:text-base italic"
+            >
+              &ldquo;{frustrations[frustrationIndex]}&rdquo;
+            </motion.p>
+          </AnimatePresence>
         </motion.div>
 
         {/* Logo */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.05 }}
-          className="mb-4"
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          <Image src="/PULSE.logo.name.png" alt="PULSE" width={280} height={100} className="mx-auto h-20 sm:h-28 w-auto" priority />
+          <Image
+            src="/PULSE.logo.name.png"
+            alt="PULSE"
+            width={320}
+            height={120}
+            className="mx-auto h-24 sm:h-32 w-auto"
+            priority
+          />
         </motion.div>
 
-        {/* Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl"
-        >
-          Cansado de{" "}
-          <span className="line-through text-white/30 decoration-white/20">swipes vazios</span>
-          ?
-          <br />
-          <span className="text-2xl sm:text-3xl lg:text-4xl text-white/70 font-normal mt-2 block">
-            A tua próxima conexão real começa aqui.
-          </span>
-        </motion.h1>
-
+        {/* The promise — one line, clear */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6 text-lg text-white/60 sm:text-xl max-w-2xl mx-auto leading-relaxed"
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-6 text-2xl sm:text-3xl lg:text-4xl font-light text-white leading-snug"
         >
-          Não é mais um app de dating. É uma{" "}
-          <span className="text-white font-semibold">inteligência que te conhece</span>,
-          encontra quem combina contigo de verdade, e te ajuda a criar conexões reais.
+          A primeira app de dating que
           <br />
-          <span className="text-white/40 text-base">Sem ghosting. Sem superficialidade. Sem perder tempo.</span>
+          <span className="font-semibold text-white">entende o que sentes.</span>
         </motion.p>
 
-        {/* Diferenciadores */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm"
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mt-4 text-base sm:text-lg text-white/45 max-w-xl mx-auto"
         >
-          <div className="flex items-center gap-2">
-            <Heart className="h-4 w-4 text-[#FF3B5C]" />
-            <span className="text-white/50">Matchmaker com IA</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Zap className="h-4 w-4 text-[#FF5E9C]" />
-            <span className="text-white/50">Conversa antes de dar match</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-[#00E5FF]" />
-            <span className="text-white/50">Coach de encontros 24/7</span>
-          </div>
-        </motion.div>
+          Conversa com o avatar IA de alguém antes de dar match.
+          <br className="hidden sm:block" />
+          Sente a química antes de trocar uma palavra.
+        </motion.p>
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
           className="mt-10"
         >
           {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center gap-3 max-w-md mx-auto">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center gap-3 max-w-sm mx-auto">
               <Input
                 type="email"
-                placeholder="O teu melhor email"
+                placeholder="O teu email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 h-12"
+                className="flex-1 h-12 bg-white/[0.06] border-white/[0.08]"
                 required
               />
-              <Button type="submit" size="lg" className="w-full sm:w-auto">
+              <Button type="submit" size="lg" className="w-full sm:w-auto whitespace-nowrap">
                 Quero Entrar
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -150,34 +148,29 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-6 max-w-md mx-auto"
+              className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.06] p-6 max-w-sm mx-auto"
             >
-              <p className="text-emerald-400 font-semibold">Estás na lista!</p>
-              <p className="text-white/50 text-sm mt-1">
-                Vamos avisar-te quando o PULSE lançar. Prepara-te para sentir a conexão.
+              <p className="text-emerald-400 font-semibold">Estás na lista.</p>
+              <p className="text-white/45 text-sm mt-1">
+                Avisamos quando lançarmos. Vai valer a pena esperar.
               </p>
             </motion.div>
           )}
-        </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-6 text-xs text-white/30"
-        >
-          Junta-te a 2.000+ pessoas à espera do lançamento
-        </motion.p>
+          <p className="mt-4 text-xs text-white/20">
+            2.000+ pessoas já estão à espera
+          </p>
+        </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll hint */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        animate={{ y: [0, 6, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity }}
       >
-        <div className="h-10 w-6 rounded-full border-2 border-white/20 flex items-start justify-center pt-2">
-          <div className="h-2 w-1 rounded-full bg-white/40" />
+        <div className="h-9 w-5 rounded-full border border-white/15 flex items-start justify-center pt-1.5">
+          <div className="h-1.5 w-0.5 rounded-full bg-white/30" />
         </div>
       </motion.div>
     </section>

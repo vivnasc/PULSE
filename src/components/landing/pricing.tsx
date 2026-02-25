@@ -1,138 +1,85 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Check, Sparkles, Crown, Zap } from "lucide-react";
-
-type BillingPeriod = "monthly" | "quarterly" | "annual";
+import { Check, Sparkles, Crown, Zap, ArrowRight } from "lucide-react";
 
 const tiers = [
   {
     name: "Spark",
     icon: Zap,
-    description: "Começa a tua jornada",
-    price: { monthly: 0, quarterly: 0, annual: 0 },
+    vibe: "Para experimentar",
+    price: "Grátis",
+    period: "",
     features: [
       "10 swipes por dia",
-      "3 matches ativos",
-      "Chat básico (só texto)",
-      "1 conversa IA por semana",
+      "Chat básico",
+      "1 conversa com avatar IA por semana",
       "Verificação básica",
-      "Prompts criativos",
-      "Nota de voz no perfil",
     ],
     cta: "Começar Grátis",
-    gradient: "from-gray-500 to-gray-600",
-    popular: false,
+    variant: "outline" as const,
+    accent: "#6B7280",
   },
   {
     name: "Flame",
     icon: Sparkles,
-    description: "Para quem leva a sério",
-    price: { monthly: 14.99, quarterly: 38.99, annual: 143.88 },
+    vibe: "Para quem quer encontrar",
+    price: "$14.99",
+    period: "/mês",
     features: [
-      "Swipes e matches ilimitados",
-      "Chat avançado (voz, fotos, GIFs)",
-      "Conversas IA ilimitadas",
-      "Mensagens com clonagem de voz",
-      "Coach de encontros (tempo real)",
-      "Tracking emocional com IA",
-      "Compatibilidade preditiva",
-      "Matchmaker IA pessoal",
+      "Tudo ilimitado — swipes, matches, chat",
+      "Avatar IA e clonagem de voz",
+      "Coach de encontros em tempo real",
+      "IA emocional + compatibilidade preditiva",
+      "Matchmaker pessoal com IA",
       "Ver quem te deu like",
-      "5 boosts/mês",
-      "Ideias de encontro inteligentes",
-      "Debrief pós-encontro",
       "Zero anúncios",
     ],
-    cta: "Upgrade para Flame",
-    gradient: "from-[#E10600] via-[#FF3B5C] to-[#FF5E9C]",
+    cta: "Começar a Sentir",
+    variant: "default" as const,
+    accent: "#FF3B5C",
     popular: true,
   },
   {
     name: "Blaze",
     icon: Crown,
-    description: "A experiência máxima",
-    price: { monthly: 34.99, quarterly: 89.99, annual: 335.88 },
+    vibe: "A experiência completa",
+    price: "$34.99",
+    period: "/mês",
     features: [
       "Tudo do Flame",
       "Concierge IA 24/7",
-      "Matching hiper-personalizado",
-      "Análise avançada de vídeo",
-      "Previsão de relação (6-12 meses)",
       "Simulador de encontros ilimitado",
-      "Dashboard de analytics premium",
-      "Proteção anti-ghosting",
-      "Modo incógnito",
-      "10 super boosts/mês",
-      "Badge VIP e suporte prioritário",
-      "Filtros avançados (50+ critérios)",
+      "Previsão de relação (6-12 meses)",
+      "Modo incógnito + proteção anti-ghosting",
+      "Badge VIP + suporte prioritário",
     ],
     cta: "Ir de Blaze",
-    gradient: "from-amber-400 via-yellow-500 to-orange-500",
-    popular: false,
+    variant: "outline" as const,
+    accent: "#FFB547",
   },
 ];
 
 export function Pricing() {
-  const [billing, setBilling] = useState<BillingPeriod>("monthly");
-
-  const getSavings = (period: BillingPeriod) => {
-    if (period === "quarterly") return "-10%";
-    if (period === "annual") return "-20%";
-    return null;
-  };
-
-  const periodLabels: Record<BillingPeriod, string> = {
-    monthly: "Mensal",
-    quarterly: "Trimestral",
-    annual: "Anual",
-  };
-
   return (
-    <section className="relative py-24 px-4" id="pricing">
-      <div className="mx-auto max-w-7xl">
+    <section className="relative py-28 px-4" id="pricing">
+      <div className="mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl font-bold text-white sm:text-5xl">
-            Preços{" "}
-            <span className="gradient-text">
-              simples e transparentes
-            </span>
+          <p className="text-sm text-white/30 uppercase tracking-widest mb-3">Planos</p>
+          <h2 className="text-3xl font-bold text-white sm:text-5xl leading-tight">
+            Investe em quem importa.
+            <br />
+            <span className="text-white/30">Tu.</span>
           </h2>
-          <p className="mt-4 text-lg text-white/50">
-            Começa grátis. Faz upgrade quando quiseres mais.
-          </p>
         </motion.div>
 
-        {/* Billing toggle */}
-        <div className="flex items-center justify-center gap-2 mb-12">
-          {(["monthly", "quarterly", "annual"] as BillingPeriod[]).map((period) => (
-            <button
-              key={period}
-              onClick={() => setBilling(period)}
-              className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                billing === period
-                  ? "bg-white/10 text-white"
-                  : "text-white/40 hover:text-white/60"
-              }`}
-            >
-              {periodLabels[period]}
-              {getSavings(period) && (
-                <span className="ml-1.5 text-xs text-emerald-400">{getSavings(period)}</span>
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* Pricing cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
           {tiers.map((tier, i) => (
             <motion.div
               key={tier.name}
@@ -140,56 +87,56 @@ export function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`relative rounded-2xl border p-6 ${
+              className={`relative rounded-2xl p-6 transition-all ${
                 tier.popular
-                  ? "border-[#FF3B5C]/30 bg-white/[0.05] scale-105"
-                  : "border-white/10 bg-white/[0.02]"
+                  ? "bg-white/[0.04] border border-white/10 md:scale-105"
+                  : "bg-white/[0.02] border border-white/5"
               }`}
             >
               {tier.popular && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  Mais Popular
-                </Badge>
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[11px] font-medium text-white"
+                  style={{ background: "linear-gradient(135deg, #FF3B5C, #FF5E9C)" }}
+                >
+                  Recomendado
+                </div>
               )}
 
-              <div className="mb-4">
-                <div className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${tier.gradient}`}>
-                  <tier.icon className="h-5 w-5 text-white" />
-                </div>
+              <div className="mb-5">
+                <tier.icon className="h-5 w-5 mb-3" style={{ color: tier.accent }} />
+                <h3 className="text-lg font-bold text-white">{tier.name}</h3>
+                <p className="text-xs text-white/40">{tier.vibe}</p>
               </div>
 
-              <h3 className="text-xl font-bold text-white">{tier.name}</h3>
-              <p className="text-sm text-white/50">{tier.description}</p>
-
-              <div className="mt-4 mb-6">
-                <span className="text-4xl font-bold text-white">
-                  {tier.price[billing] === 0 ? "Grátis" : `$${tier.price[billing]}`}
-                </span>
-                {tier.price[billing] > 0 && (
-                  <span className="text-white/40 text-sm">
-                    /{billing === "monthly" ? "mês" : billing === "quarterly" ? "3 meses" : "ano"}
-                  </span>
-                )}
+              <div className="mb-6">
+                <span className="text-3xl font-bold text-white">{tier.price}</span>
+                {tier.period && <span className="text-white/30 text-sm">{tier.period}</span>}
               </div>
 
-              <Button
-                variant={tier.popular ? "default" : "outline"}
-                className="w-full mb-6"
-              >
+              <Button variant={tier.variant} className="w-full mb-6" size="sm">
                 {tier.cta}
+                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Button>
 
               <ul className="space-y-2.5">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2">
-                    <Check className="h-4 w-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <span className="text-sm text-white/60">{feature}</span>
+                {tier.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2">
+                    <Check className="h-3.5 w-3.5 mt-0.5 shrink-0" style={{ color: `${tier.accent}99` }} />
+                    <span className="text-[13px] text-white/50">{f}</span>
                   </li>
                 ))}
               </ul>
             </motion.div>
           ))}
         </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mt-8 text-xs text-white/20"
+        >
+          Cancela quando quiseres. Sem compromisso. Sem truques.
+        </motion.p>
       </div>
     </section>
   );
