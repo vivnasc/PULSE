@@ -50,10 +50,10 @@ export default function ChatListPage() {
           <Input placeholder="Search conversations..." className="pl-10" />
         </div>
 
-        <div className="mb-4 rounded-xl border border-rose-500/20 bg-rose-500/5 p-3 flex items-start gap-2">
-          <Sparkles className="h-4 w-4 text-rose-400 mt-0.5 shrink-0" />
+        <div className="mb-4 rounded-xl border border-[#FF3B5C]/20 bg-[#FF3B5C]/5 p-3 flex items-start gap-2">
+          <Sparkles className="h-4 w-4 text-[#FF3B5C] mt-0.5 shrink-0" />
           <div>
-            <p className="text-xs text-rose-300 font-medium">AI Coach Tip</p>
+            <p className="text-xs text-[#FF5E9C] font-medium">AI Coach Tip</p>
             <p className="text-xs text-white/50 mt-0.5">
               Sofia mentioned she loves photography. Ask about her latest photos to deepen the connection!
             </p>
@@ -80,10 +80,10 @@ export default function ChatListPage() {
                   </div>
                   <div className="flex items-center justify-between">
                     <p className="text-sm text-white/40 truncate">
-                      {chat.typing ? <span className="text-rose-400 italic">typing...</span> : chat.lastMessage}
+                      {chat.typing ? <span className="text-[#FF3B5C] italic">typing...</span> : chat.lastMessage}
                     </p>
                     {chat.unread > 0 && (
-                      <span className="ml-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-rose-500 to-pink-500 text-[10px] font-bold text-white">
+                      <span className="ml-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] text-[10px] font-bold text-white">
                         {chat.unread}
                       </span>
                     )}

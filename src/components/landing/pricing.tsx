@@ -48,7 +48,7 @@ const tiers = [
       "Zero ads",
     ],
     cta: "Upgrade to Flame",
-    gradient: "from-rose-500 via-orange-500 to-pink-500",
+    gradient: "from-[#FF3B5C] via-[#FF5E9C] to-[#FF5E9C]",
     popular: true,
   },
   {
@@ -71,7 +71,7 @@ const tiers = [
       "Advanced filters (50+ criteria)",
     ],
     cta: "Go Blaze",
-    gradient: "from-amber-400 via-yellow-500 to-orange-500",
+    gradient: "from-amber-400 via-yellow-500 to-[#FF5E9C]",
     popular: false,
   },
 ];
@@ -96,7 +96,7 @@ export function Pricing() {
         >
           <h2 className="text-3xl font-bold text-white sm:text-5xl">
             Simple,{" "}
-            <span className="bg-gradient-to-r from-rose-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="gradient-text">
               transparent
             </span>{" "}
             pricing
@@ -137,7 +137,7 @@ export function Pricing() {
               transition={{ delay: i * 0.1 }}
               className={`relative rounded-2xl border p-6 ${
                 tier.popular
-                  ? "border-rose-500/30 bg-white/[0.05] scale-105"
+                  ? "border-[#FF3B5C]/30 bg-white/[0.05] scale-105"
                   : "border-white/10 bg-white/[0.02]"
               }`}
             >

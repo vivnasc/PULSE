@@ -16,7 +16,7 @@ export function Loading({ size = "md", className }: LoadingProps) {
     <div className={cn("flex items-center justify-center", className)}>
       <div
         className={cn(
-          "animate-spin rounded-full border-2 border-white/20 border-t-rose-500",
+          "animate-spin rounded-full border-2 border-white/20 border-t-[#FF3B5C]",
           sizeClasses[size]
         )}
       />
@@ -30,7 +30,7 @@ export function PulseLoading({ className }: { className?: string }) {
       {[0, 1, 2].map((i) => (
         <div
           key={i}
-          className="h-2 w-2 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 animate-pulse"
+          className="h-2 w-2 rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] animate-pulse"
           style={{ animationDelay: `${i * 150}ms` }}
         />
       ))}
@@ -40,11 +40,11 @@ export function PulseLoading({ className }: { className?: string }) {
 
 export function FullScreenLoading() {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gray-950">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0E0F14]">
       <div className="relative">
-        <div className="h-16 w-16 rounded-full bg-gradient-to-r from-rose-500 via-orange-500 to-pink-500 animate-pulse" />
-        <div className="absolute inset-2 rounded-full bg-gray-950" />
-        <div className="absolute inset-4 rounded-full bg-gradient-to-r from-rose-500 via-orange-500 to-pink-500 animate-ping opacity-20" />
+        <div className="h-16 w-16 rounded-full bg-gradient-to-r from-[#FF3B5C] via-[#FF5E9C] to-[#FF5E9C] animate-pulse" />
+        <div className="absolute inset-2 rounded-full bg-[#0E0F14]" />
+        <div className="absolute inset-4 rounded-full bg-gradient-to-r from-[#FF3B5C] via-[#FF5E9C] to-[#FF5E9C] animate-ping opacity-20" />
       </div>
       <p className="mt-4 text-sm text-white/50 animate-pulse">PULSE</p>
     </div>

@@ -62,7 +62,7 @@ export function SwipeActions({
       <motion.button
         whileTap={{ scale: 0.85 }}
         onClick={onLike}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-lg shadow-rose-500/25 hover:shadow-xl transition-all"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] text-white shadow-lg shadow-[#FF3B5C]/25 hover:shadow-xl transition-all"
       >
         <Heart className="h-7 w-7" />
       </motion.button>

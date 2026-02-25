@@ -139,17 +139,17 @@ export default function OnboardingPage() {
   const selectedPrompt = CREATIVE_PROMPTS.personality[0]; // Simplified for onboarding
 
   return (
-    <div className="min-h-screen bg-gray-950 flex flex-col">
+    <div className="min-h-screen bg-[#0E0F14] flex flex-col">
       {/* Background */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-1/4 -left-32 h-64 w-64 rounded-full bg-rose-500/10 blur-[100px]" />
-        <div className="absolute bottom-1/3 -right-32 h-64 w-64 rounded-full bg-orange-500/10 blur-[100px]" />
+        <div className="absolute top-1/4 -left-32 h-64 w-64 rounded-full bg-[#FF3B5C]/10 blur-[100px]" />
+        <div className="absolute bottom-1/3 -right-32 h-64 w-64 rounded-full bg-[#FF5E9C]/10 blur-[100px]" />
       </div>
 
       {/* Progress bar */}
       <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-white/5">
         <motion.div
-          className="h-full bg-gradient-to-r from-rose-500 via-orange-500 to-pink-500"
+          className="h-full bg-gradient-to-r from-[#FF3B5C] via-[#FF5E9C] to-[#FF5E9C]"
           animate={{ width: `${progress}%` }}
           transition={{ duration: 0.3 }}
         />
@@ -178,7 +178,7 @@ export default function OnboardingPage() {
                         onClick={() => setFormData({ ...formData, gender: opt.value })}
                         className={`p-4 rounded-xl border text-left transition-all ${
                           formData.gender === opt.value
-                            ? "border-rose-500/50 bg-rose-500/10"
+                            ? "border-[#FF3B5C]/50 bg-[#FF3B5C]/10"
                             : "border-white/10 bg-white/5 hover:bg-white/10"
                         }`}
                       >
@@ -207,7 +207,7 @@ export default function OnboardingPage() {
                         }
                         className={`p-4 rounded-xl border text-left transition-all ${
                           formData.gender_preference.includes(opt.value)
-                            ? "border-rose-500/50 bg-rose-500/10"
+                            ? "border-[#FF3B5C]/50 bg-[#FF3B5C]/10"
                             : "border-white/10 bg-white/5 hover:bg-white/10"
                         }`}
                       >
@@ -225,7 +225,7 @@ export default function OnboardingPage() {
                         onClick={() => setFormData({ ...formData, relationship_type: type.value })}
                         className={`w-full p-3 rounded-xl border text-left transition-all flex items-center gap-3 ${
                           formData.relationship_type === type.value
-                            ? "border-rose-500/50 bg-rose-500/10"
+                            ? "border-[#FF3B5C]/50 bg-[#FF3B5C]/10"
                             : "border-white/10 bg-white/5 hover:bg-white/10"
                         }`}
                       >
@@ -248,7 +248,7 @@ export default function OnboardingPage() {
                         key={i}
                         className={`aspect-[3/4] rounded-xl border-2 border-dashed flex items-center justify-center transition-all ${
                           i === 0
-                            ? "border-rose-500/50 bg-rose-500/10"
+                            ? "border-[#FF3B5C]/50 bg-[#FF3B5C]/10"
                             : "border-white/10 bg-white/5 hover:bg-white/10"
                         }`}
                       >
@@ -274,7 +274,7 @@ export default function OnboardingPage() {
                       CREATIVE_PROMPTS.fun[0],
                     ].map((prompt, i) => (
                       <div key={i}>
-                        <label className="text-sm text-rose-400 font-medium">{prompt}</label>
+                        <label className="text-sm text-[#FF3B5C] font-medium">{prompt}</label>
                         <Textarea
                           placeholder="Your answer..."
                           className="mt-1"
@@ -306,7 +306,7 @@ export default function OnboardingPage() {
                 <div className="text-center">
                   <h2 className="text-2xl font-bold text-white mb-2">Record a voice note</h2>
                   <p className="text-white/50 mb-8">Let matches hear your voice. 15-30 seconds.</p>
-                  <button className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-pink-500 shadow-lg shadow-rose-500/25 hover:shadow-xl transition-all active:scale-95">
+                  <button className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#FF3B5C] to-[#FF5E9C] shadow-lg shadow-[#FF3B5C]/25 hover:shadow-xl transition-all active:scale-95">
                     <Mic className="h-10 w-10 text-white" />
                   </button>
                   <p className="mt-4 text-sm text-white/40">Tap to record</p>
@@ -372,7 +372,7 @@ export default function OnboardingPage() {
                         max={500}
                         value={formData.max_distance_km}
                         onChange={(e) => setFormData({ ...formData, max_distance_km: parseInt(e.target.value) })}
-                        className="w-full accent-rose-500"
+                        className="w-full accent-[#FF3B5C]"
                       />
                     </div>
                   </div>
@@ -398,7 +398,7 @@ export default function OnboardingPage() {
                         }
                         className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
                           formData.interests.includes(interest)
-                            ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white"
+                            ? "bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] text-white"
                             : "bg-white/5 text-white/50 hover:bg-white/10 border border-white/10"
                         }`}
                       >
@@ -419,7 +419,7 @@ export default function OnboardingPage() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", duration: 0.5 }}
-                    className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-rose-500 via-orange-500 to-pink-500"
+                    className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-[#FF3B5C] via-[#FF5E9C] to-[#FF5E9C]"
                   >
                     <Sparkles className="h-10 w-10 text-white" />
                   </motion.div>
@@ -440,7 +440,7 @@ export default function OnboardingPage() {
 
       {/* Navigation */}
       {step !== "complete" && (
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-950/80 backdrop-blur-xl border-t border-white/5">
+        <div className="fixed bottom-0 left-0 right-0 p-4 bg-[#0E0F14]/80 backdrop-blur-xl border-t border-white/5">
           <div className="max-w-md mx-auto flex items-center justify-between">
             <Button
               variant="ghost"

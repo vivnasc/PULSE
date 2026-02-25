@@ -48,11 +48,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-950 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#0E0F14] px-4">
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/3 -left-32 h-64 w-64 rounded-full bg-rose-500/10 blur-[100px]" />
-        <div className="absolute bottom-1/3 -right-32 h-64 w-64 rounded-full bg-pink-500/10 blur-[100px]" />
+        <div className="absolute top-1/3 -left-32 h-64 w-64 rounded-full bg-[#FF3B5C]/10 blur-[100px]" />
+        <div className="absolute bottom-1/3 -right-32 h-64 w-64 rounded-full bg-[#FF5E9C]/10 blur-[100px]" />
       </div>
 
       <motion.div
@@ -63,7 +63,7 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-rose-400 via-orange-400 to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold pulse-gradient-text">
               PULSE
             </h1>
           </Link>
@@ -133,7 +133,7 @@ export default function LoginPage() {
 
         <p className="text-center mt-6 text-sm text-white/40">
           Don&apos;t have an account?{" "}
-          <Link href="/auth/register" className="text-rose-400 hover:text-rose-300">
+          <Link href="/auth/register" className="text-[#FF3B5C] hover:text-[#FF5E9C]">
             Sign up
           </Link>
         </p>

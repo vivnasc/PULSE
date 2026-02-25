@@ -34,7 +34,7 @@ export default function ProfilePage() {
         <div className="text-center mb-6">
           <div className="relative inline-block">
             <Avatar src={null} fallback={profile.displayName[0]} size="xl" verified={profile.verified} />
-            <button className="absolute bottom-0 right-0 h-8 w-8 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 flex items-center justify-center border-2 border-gray-950">
+            <button className="absolute bottom-0 right-0 h-8 w-8 rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] flex items-center justify-center border-2 border-[#0E0F14]">
               <Camera className="h-3.5 w-3.5 text-white" />
             </button>
           </div>
@@ -55,7 +55,7 @@ export default function ProfilePage() {
         <div className="grid grid-cols-3 gap-3 mb-6">
           {[{ label: "Likes", value: profile.stats.likes, icon: Heart }, { label: "Matches", value: profile.stats.matches, icon: Sparkles }, { label: "Chats", value: profile.stats.conversations, icon: BarChart3 }].map((stat) => (
             <Card key={stat.label}><CardContent className="p-3 text-center">
-              <stat.icon className="h-4 w-4 mx-auto text-rose-400 mb-1" />
+              <stat.icon className="h-4 w-4 mx-auto text-[#FF3B5C] mb-1" />
               <p className="text-lg font-bold text-white">{stat.value}</p>
               <p className="text-xs text-white/40">{stat.label}</p>
             </CardContent></Card>
@@ -76,7 +76,7 @@ export default function ProfilePage() {
         <div className="mb-6">
           <h3 className="text-sm font-medium text-white/60 mb-3">Voice Note</h3>
           <button className="w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center gap-3 hover:bg-white/10 transition-colors">
-            <div className="h-10 w-10 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] flex items-center justify-center">
               <Mic className="h-5 w-5 text-white" />
             </div>
             <div className="text-left">
@@ -91,7 +91,7 @@ export default function ProfilePage() {
           <div className="space-y-3">
             {profile.prompts.map((prompt, i) => (
               <Card key={i}><CardContent className="p-4">
-                <p className="text-xs text-rose-400 font-medium mb-1">{prompt.question}</p>
+                <p className="text-xs text-[#FF3B5C] font-medium mb-1">{prompt.question}</p>
                 <p className="text-sm text-white/80">{prompt.answer}</p>
               </CardContent></Card>
             ))}
@@ -106,7 +106,7 @@ export default function ProfilePage() {
         </div>
 
         {profile.tier === "free" && (
-          <Card className="border-rose-500/20 bg-gradient-to-r from-rose-500/5 to-pink-500/5">
+          <Card className="border-[#FF3B5C]/20 bg-gradient-to-r from-[#FF3B5C]/5 to-[#FF5E9C]/5">
             <CardContent className="p-4 text-center">
               <Crown className="h-8 w-8 text-amber-400 mx-auto mb-2" />
               <h3 className="font-semibold text-white">Unlock Premium Features</h3>

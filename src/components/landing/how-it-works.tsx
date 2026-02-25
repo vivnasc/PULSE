@@ -42,7 +42,7 @@ export function HowItWorks() {
         >
           <h2 className="text-3xl font-bold text-white sm:text-5xl">
             How{" "}
-            <span className="bg-gradient-to-r from-rose-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="gradient-text">
               PULSE
             </span>{" "}
             works
@@ -66,8 +66,8 @@ export function HowItWorks() {
                 <span className="text-3xl font-bold bg-gradient-to-b from-white/20 to-transparent bg-clip-text text-transparent">
                   {step.number}
                 </span>
-                <div className="mt-2 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-rose-500/20 to-pink-500/20 border border-white/10">
-                  <step.icon className="h-6 w-6 text-rose-400" />
+                <div className="mt-2 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF3B5C]/20 to-[#FF5E9C]/20 border border-white/10">
+                  <step.icon className="h-6 w-6 text-[#FF3B5C]" />
                 </div>
               </div>
               <div>

@@ -19,8 +19,8 @@ export function DateCoachTip({ tip, category, detail }: DateCoachTipProps) {
   const styles = {
     conversation: {
       icon: Sparkles,
-      color: "text-rose-400",
-      bg: "bg-rose-500/5 border-rose-500/10",
+      color: "text-[#FF3B5C]",
+      bg: "bg-[#FF3B5C]/5 border-[#FF3B5C]/10",
     },
     warning: {
       icon: Lightbulb,

@@ -99,12 +99,12 @@ export default function DiscoverPage() {
       <div className="relative mx-auto max-w-md px-4 pt-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-rose-400 via-orange-400 to-pink-400 bg-clip-text text-transparent">
+          <h1 className="text-xl font-bold pulse-gradient-text">
             PULSE
           </h1>
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" className="h-9 w-9">
-              <Sparkles className="h-4 w-4 text-rose-400" />
+              <Sparkles className="h-4 w-4 text-[#FF3B5C]" />
             </Button>
             <Button variant="ghost" size="icon" className="h-9 w-9">
               <SlidersHorizontal className="h-4 w-4" />

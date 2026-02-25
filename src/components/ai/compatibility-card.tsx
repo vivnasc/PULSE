@@ -47,7 +47,7 @@ export function CompatibilityCard({ data = DEFAULT_DATA }: { data?: Compatibilit
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-base flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-rose-400" />
+            <Sparkles className="h-4 w-4 text-[#FF3B5C]" />
             AI Compatibility
           </CardTitle>
           <Badge variant="secondary" className="text-xs">
@@ -93,7 +93,7 @@ export function CompatibilityCard({ data = DEFAULT_DATA }: { data?: Compatibilit
         {/* Stats grid */}
         <div className="grid grid-cols-2 gap-3">
           <div className="rounded-xl bg-white/5 p-3 text-center">
-            <Calendar className="h-4 w-4 text-rose-400 mx-auto mb-1" />
+            <Calendar className="h-4 w-4 text-[#FF3B5C] mx-auto mb-1" />
             <p className="text-lg font-bold text-white">{data.secondDateProbability}%</p>
             <p className="text-[10px] text-white/40">2nd date probability</p>
           </div>
@@ -105,9 +105,9 @@ export function CompatibilityCard({ data = DEFAULT_DATA }: { data?: Compatibilit
         </div>
 
         {/* Best for */}
-        <div className="rounded-xl bg-rose-500/5 border border-rose-500/10 p-3">
+        <div className="rounded-xl bg-[#FF3B5C]/5 border border-[#FF3B5C]/10 p-3">
           <div className="flex items-center gap-2">
-            <Heart className="h-4 w-4 text-rose-400" />
+            <Heart className="h-4 w-4 text-[#FF3B5C]" />
             <span className="text-sm text-white">
               Best for: <span className="font-medium">{data.bestFor}</span>
             </span>

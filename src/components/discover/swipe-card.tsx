@@ -130,7 +130,7 @@ export function SwipeCard({ profile, onSwipe, isTop }: SwipeCardProps) {
 
           {profile.prompts?.[0] && (
             <div className="mt-2 rounded-xl bg-white/10 backdrop-blur-sm p-3">
-              <p className="text-xs text-rose-300 font-medium mb-1">{profile.prompts[0].question}</p>
+              <p className="text-xs text-[#FF5E9C] font-medium mb-1">{profile.prompts[0].question}</p>
               <p className="text-sm text-white/90">{profile.prompts[0].answer}</p>
             </div>
           )}

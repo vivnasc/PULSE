@@ -18,14 +18,14 @@ const features = [
     icon: Mic,
     title: "Voice Cloning",
     description: "Each match gets a unique voice message in YOUR voice, personalized to their interests.",
-    gradient: "from-rose-500 to-pink-500",
+    gradient: "from-[#FF3B5C] to-[#FF5E9C]",
     tag: "Unique",
   },
   {
     icon: Brain,
     title: "Emotion AI",
     description: "Real-time emotional mapping of your conversations. See chemistry scores and connection peaks.",
-    gradient: "from-orange-500 to-amber-500",
+    gradient: "from-[#FF5E9C] to-amber-500",
     tag: "Smart",
   },
   {
@@ -46,7 +46,7 @@ const features = [
     icon: Globe,
     title: "Seamless Translation",
     description: "Date across languages. 150+ languages with tone, humor, and personality preserved.",
-    gradient: "from-pink-500 to-rose-500",
+    gradient: "from-[#FF5E9C] to-[#FF3B5C]",
     tag: "Global",
   },
   {
@@ -74,14 +74,14 @@ const features = [
     icon: Heart,
     title: "AI Matchmaker",
     description: "Not a passive algorithm. An active agent that learns you deeply and hunts for your person.",
-    gradient: "from-rose-500 to-red-500",
+    gradient: "from-[#FF3B5C] to-red-500",
     tag: "Personal",
   },
   {
     icon: Sparkles,
     title: "Dream Date Simulator",
     description: "Practice before the real thing. AI simulates your date based on their profile.",
-    gradient: "from-purple-500 to-pink-500",
+    gradient: "from-purple-500 to-[#FF5E9C]",
     tag: "Premium",
   },
   {
@@ -105,7 +105,7 @@ export function Features() {
         >
           <h2 className="text-3xl font-bold text-white sm:text-5xl">
             Features that{" "}
-            <span className="bg-gradient-to-r from-rose-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="gradient-text">
               change everything
             </span>
           </h2>

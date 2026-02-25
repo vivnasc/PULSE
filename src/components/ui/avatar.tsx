@@ -35,7 +35,7 @@ export function Avatar({
     <div className={cn("relative inline-flex shrink-0", className)} {...props}>
       <div
         className={cn(
-          "relative overflow-hidden rounded-full bg-gradient-to-br from-rose-500/20 to-pink-500/20 flex items-center justify-center",
+          "relative overflow-hidden rounded-full bg-gradient-to-br from-[#FF3B5C]/20 to-[#FF5E9C]/20 flex items-center justify-center",
           sizeClasses[size]
         )}
       >

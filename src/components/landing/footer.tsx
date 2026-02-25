@@ -6,7 +6,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="col-span-2 md:col-span-1">
-            <h3 className="text-xl font-bold bg-gradient-to-r from-rose-400 via-orange-400 to-pink-400 bg-clip-text text-transparent">
+            <h3 className="text-xl font-bold pulse-gradient-text">
               PULSE
             </h3>
             <p className="mt-2 text-sm text-white/40">
@@ -52,7 +52,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} PULSE. All rights reserved.
           </p>
           <p className="text-xs text-white/30 flex items-center gap-1">
-            Made with <Heart className="h-3 w-3 text-rose-500" /> for real connections
+            Made with <Heart className="h-3 w-3 text-[#FF3B5C]" /> for real connections
           </p>
         </div>
       </div>

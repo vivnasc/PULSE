@@ -40,7 +40,7 @@ export function EmotionTracker({
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-base flex items-center gap-2">
-            <Heart className="h-4 w-4 text-rose-400" />
+            <Heart className="h-4 w-4 text-[#FF3B5C]" />
             Emotion Tracking
           </CardTitle>
           <Badge variant={overallChemistry > 70 ? "default" : "secondary"}>
@@ -57,7 +57,7 @@ export function EmotionTracker({
               <motion.div
                 className={`w-full rounded-t-md ${
                   point.score === maxScore
-                    ? "bg-gradient-to-t from-rose-500 to-pink-400"
+                    ? "bg-gradient-to-t from-[#FF3B5C] to-[#FF5E9C]"
                     : "bg-white/10"
                 }`}
                 initial={{ height: 0 }}
@@ -84,11 +84,11 @@ export function EmotionTracker({
         </div>
 
         {/* Peak moment */}
-        <div className="rounded-xl bg-rose-500/5 border border-rose-500/10 p-3">
+        <div className="rounded-xl bg-[#FF3B5C]/5 border border-[#FF3B5C]/10 p-3">
           <div className="flex items-start gap-2">
-            <Sparkles className="h-4 w-4 text-rose-400 mt-0.5 shrink-0" />
+            <Sparkles className="h-4 w-4 text-[#FF3B5C] mt-0.5 shrink-0" />
             <div>
-              <p className="text-xs text-rose-400 font-medium">Peak connection moment</p>
+              <p className="text-xs text-[#FF3B5C] font-medium">Peak connection moment</p>
               <p className="text-sm text-white/70 mt-0.5">{peakMoment}</p>
             </div>
           </div>

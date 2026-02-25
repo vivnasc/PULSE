@@ -72,10 +72,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-950 px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center bg-[#0E0F14] px-4 py-8">
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -right-32 h-64 w-64 rounded-full bg-orange-500/10 blur-[100px]" />
-        <div className="absolute bottom-1/4 -left-32 h-64 w-64 rounded-full bg-rose-500/10 blur-[100px]" />
+        <div className="absolute top-1/4 -right-32 h-64 w-64 rounded-full bg-[#FF5E9C]/10 blur-[100px]" />
+        <div className="absolute bottom-1/4 -left-32 h-64 w-64 rounded-full bg-[#FF3B5C]/10 blur-[100px]" />
       </div>
 
       <motion.div
@@ -85,7 +85,7 @@ export default function RegisterPage() {
       >
         <div className="text-center mb-8">
           <Link href="/">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-rose-400 via-orange-400 to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold pulse-gradient-text">
               PULSE
             </h1>
           </Link>
@@ -182,7 +182,7 @@ export default function RegisterPage() {
 
         <p className="text-center mt-6 text-sm text-white/40">
           Already have an account?{" "}
-          <Link href="/auth/login" className="text-rose-400 hover:text-rose-300">
+          <Link href="/auth/login" className="text-[#FF3B5C] hover:text-[#FF5E9C]">
             Sign in
           </Link>
         </p>

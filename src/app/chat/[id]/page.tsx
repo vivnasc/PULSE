@@ -49,9 +49,9 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-950">
+    <div className="flex flex-col h-screen bg-[#0E0F14]">
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-white/5 bg-gray-950/90 backdrop-blur-xl">
+      <div className="flex items-center gap-3 px-4 py-3 border-b border-white/5 bg-[#0E0F14]/90 backdrop-blur-xl">
         <button onClick={() => router.back()} className="text-white/60 hover:text-white">
           <ArrowLeft className="h-5 w-5" />
         </button>
@@ -74,8 +74,8 @@ export default function ChatPage() {
       <AnimatePresence>
         {showCoachTip && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="border-b border-white/5 overflow-hidden">
-            <div className="px-4 py-2 bg-rose-500/5 flex items-start gap-2">
-              <Sparkles className="h-3.5 w-3.5 text-rose-400 mt-0.5 shrink-0" />
+            <div className="px-4 py-2 bg-[#FF3B5C]/5 flex items-start gap-2">
+              <Sparkles className="h-3.5 w-3.5 text-[#FF3B5C] mt-0.5 shrink-0" />
               <p className="text-xs text-white/60 flex-1">{coachTip}</p>
               <button onClick={() => setShowCoachTip(false)} className="text-white/30 hover:text-white/50"><X className="h-3 w-3" /></button>
             </div>
@@ -87,7 +87,7 @@ export default function ChatPage() {
       <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
         <div className="text-center mb-4">
           <Badge variant="secondary" className="text-xs">
-            <Heart className="h-3 w-3 mr-1 text-rose-400" />
+            <Heart className="h-3 w-3 mr-1 text-[#FF3B5C]" />
             Chemistry: High — Conversation flowing naturally
           </Badge>
         </div>
@@ -96,7 +96,7 @@ export default function ChatPage() {
           const isMe = msg.senderId === "me";
           return (
             <motion.div key={msg.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
-              <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 ${isMe ? "bg-gradient-to-r from-rose-500/90 to-pink-500/90 text-white rounded-br-md" : "bg-white/10 text-white/90 rounded-bl-md"}`}>
+              <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 ${isMe ? "bg-gradient-to-r from-[#FF3B5C]/90 to-[#FF5E9C]/90 text-white rounded-br-md" : "bg-white/10 text-white/90 rounded-bl-md"}`}>
                 <p className="text-sm leading-relaxed">{msg.content}</p>
                 <p className={`text-[10px] mt-1 ${isMe ? "text-white/50" : "text-white/30"}`}>
                   {msg.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
@@ -110,7 +110,7 @@ export default function ChatPage() {
       </div>
 
       {/* Input */}
-      <div className="border-t border-white/5 bg-gray-950/90 backdrop-blur-xl px-4 py-3">
+      <div className="border-t border-white/5 bg-[#0E0F14]/90 backdrop-blur-xl px-4 py-3">
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon" className="h-9 w-9 shrink-0"><Image className="h-4 w-4 text-white/40" /></Button>
           <input
@@ -119,7 +119,7 @@ export default function ChatPage() {
             onChange={(e) => setNewMessage(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
             placeholder="Type a message..."
-            className="flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-rose-500/30"
+            className="flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#FF3B5C]/30"
           />
           {newMessage ? (
             <Button size="icon" className="h-9 w-9 shrink-0 rounded-full" onClick={handleSend}><Send className="h-4 w-4" /></Button>

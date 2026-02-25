@@ -67,7 +67,7 @@ export default function MatchesPage() {
             onClick={() => setTab("matches")}
             className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${
               tab === "matches"
-                ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white"
+                ? "bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] text-white"
                 : "bg-white/5 text-white/50"
             }`}
           >
@@ -78,7 +78,7 @@ export default function MatchesPage() {
             onClick={() => setTab("likes")}
             className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${
               tab === "likes"
-                ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white"
+                ? "bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] text-white"
                 : "bg-white/5 text-white/50"
             }`}
           >
@@ -100,12 +100,12 @@ export default function MatchesPage() {
                       className="flex flex-col items-center gap-1.5"
                     >
                       <div className="relative">
-                        <div className="rounded-full p-0.5 bg-gradient-to-r from-rose-500 via-orange-500 to-pink-500">
+                        <div className="rounded-full p-0.5 bg-gradient-to-r from-[#FF3B5C] via-[#FF5E9C] to-[#FF5E9C]">
                           <Avatar
                             src={match.photo}
                             fallback={match.name[0]}
                             size="lg"
-                            className="border-2 border-gray-950"
+                            className="border-2 border-[#0E0F14]"
                           />
                         </div>
                         <Badge className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[10px] px-1.5">
@@ -159,7 +159,7 @@ export default function MatchesPage() {
                   key={like.id}
                   className="relative aspect-[3/4] rounded-2xl bg-white/5 overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-rose-500/20 to-pink-500/20 backdrop-blur-xl flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#FF3B5C]/20 to-[#FF5E9C]/20 backdrop-blur-xl flex items-center justify-center">
                     <Heart className="h-8 w-8 text-white/20" />
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">

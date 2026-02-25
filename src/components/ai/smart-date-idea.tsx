@@ -66,7 +66,7 @@ export function SmartDateIdea() {
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-base flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-rose-400" />
+            <Sparkles className="h-4 w-4 text-[#FF3B5C]" />
             AI Date Idea
           </CardTitle>
           <Button variant="ghost" size="sm" className="text-xs">
@@ -108,12 +108,12 @@ export function SmartDateIdea() {
               {i < idea.stops.length - 1 && (
                 <div className="absolute left-[15px] top-8 bottom-0 w-px bg-white/10" />
               )}
-              <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-rose-500/20 to-pink-500/20 border border-white/10">
-                <stop.icon className="h-4 w-4 text-rose-400" />
+              <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#FF3B5C]/20 to-[#FF5E9C]/20 border border-white/10">
+                <stop.icon className="h-4 w-4 text-[#FF3B5C]" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-rose-400">{stop.time}</span>
+                  <span className="text-xs font-medium text-[#FF3B5C]">{stop.time}</span>
                   <span className="text-xs text-white/30">{stop.cost}</span>
                 </div>
                 <p className="text-sm font-medium text-white mt-0.5">{stop.place}</p>
@@ -124,8 +124,8 @@ export function SmartDateIdea() {
         </div>
 
         {/* Icebreaker */}
-        <div className="rounded-xl bg-rose-500/5 border border-rose-500/10 p-3">
-          <p className="text-xs text-rose-400 font-medium mb-1">Suggested icebreaker</p>
+        <div className="rounded-xl bg-[#FF3B5C]/5 border border-[#FF3B5C]/10 p-3">
+          <p className="text-xs text-[#FF3B5C] font-medium mb-1">Suggested icebreaker</p>
           <p className="text-sm text-white/70 italic">&quot;{idea.icebreaker}&quot;</p>
         </div>
 

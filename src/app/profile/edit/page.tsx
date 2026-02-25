@@ -97,9 +97,9 @@ export default function EditProfilePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-950">
+    <div className="min-h-screen bg-[#0E0F14]">
       {/* Header */}
-      <div className="sticky top-0 z-40 flex items-center justify-between px-4 py-3 border-b border-white/5 bg-gray-950/90 backdrop-blur-xl">
+      <div className="sticky top-0 z-40 flex items-center justify-between px-4 py-3 border-b border-white/5 bg-[#0E0F14]/90 backdrop-blur-xl">
         <button
           onClick={() => router.back()}
           className="text-white/60 hover:text-white"
@@ -133,13 +133,13 @@ export default function EditProfilePage() {
                 whileHover={{ scale: 1.02 }}
                 className={`relative aspect-[3/4] rounded-xl border-2 border-dashed flex items-center justify-center cursor-pointer transition-colors ${
                   i === 0
-                    ? "border-rose-500/50 bg-rose-500/10"
+                    ? "border-[#FF3B5C]/50 bg-[#FF3B5C]/10"
                     : "border-white/10 bg-white/5 hover:bg-white/10"
                 }`}
               >
                 <Camera className="h-6 w-6 text-white/30" />
                 {i === 0 && (
-                  <span className="absolute bottom-1 text-[10px] text-rose-400 font-medium">
+                  <span className="absolute bottom-1 text-[10px] text-[#FF3B5C] font-medium">
                     Main
                   </span>
                 )}
@@ -191,7 +191,7 @@ export default function EditProfilePage() {
             Voice Note
           </h3>
           <button className="w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center gap-3 hover:bg-white/10 transition-colors">
-            <div className="h-12 w-12 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 flex items-center justify-center shadow-lg shadow-rose-500/20">
+            <div className="h-12 w-12 rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] flex items-center justify-center shadow-lg shadow-[#FF3B5C]/20">
               <Mic className="h-6 w-6 text-white" />
             </div>
             <div className="text-left">
@@ -218,7 +218,7 @@ export default function EditProfilePage() {
               <Card key={i}>
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between mb-2">
-                    <p className="text-xs text-rose-400 font-medium flex-1">
+                    <p className="text-xs text-[#FF3B5C] font-medium flex-1">
                       {prompt.question}
                     </p>
                     <button
@@ -294,7 +294,7 @@ export default function EditProfilePage() {
                 onClick={() => toggleInterest(interest)}
                 className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all ${
                   interests.includes(interest)
-                    ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-sm"
+                    ? "bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] text-white shadow-sm"
                     : "bg-white/5 text-white/50 hover:bg-white/10 border border-white/10"
                 }`}
               >

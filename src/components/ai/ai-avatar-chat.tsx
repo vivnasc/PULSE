@@ -85,7 +85,7 @@ export function AIAvatarChat({ profileName, profilePhoto, onClose, onMatch }: AI
       initial={{ opacity: 0, y: "100%" }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: "100%" }}
-      className="fixed inset-0 z-50 flex flex-col bg-gray-950"
+      className="fixed inset-0 z-50 flex flex-col bg-[#0E0F14]"
     >
       {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-white/5">
@@ -94,7 +94,7 @@ export function AIAvatarChat({ profileName, profilePhoto, onClose, onMatch }: AI
         </button>
         <div className="relative">
           <Avatar src={profilePhoto} fallback={profileName[0]} size="sm" />
-          <div className="absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full bg-violet-500 border-2 border-gray-950 flex items-center justify-center">
+          <div className="absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full bg-violet-500 border-2 border-[#0E0F14] flex items-center justify-center">
             <Bot className="h-2.5 w-2.5 text-white" />
           </div>
         </div>
@@ -123,7 +123,7 @@ export function AIAvatarChat({ profileName, profilePhoto, onClose, onMatch }: AI
             <span className="text-xs text-white/40">Chemistry</span>
             <div className="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
               <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-rose-500 to-pink-500"
+                className="h-full rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C]"
                 animate={{ width: `${chemistryScore}%` }}
                 transition={{ duration: 0.5 }}
               />
@@ -145,7 +145,7 @@ export function AIAvatarChat({ profileName, profilePhoto, onClose, onMatch }: AI
             <div
               className={`max-w-[85%] rounded-2xl px-4 py-2.5 ${
                 msg.isUser
-                  ? "bg-gradient-to-r from-rose-500/90 to-pink-500/90 text-white rounded-br-md"
+                  ? "bg-gradient-to-r from-[#FF3B5C]/90 to-[#FF5E9C]/90 text-white rounded-br-md"
                   : "bg-violet-500/10 border border-violet-500/20 text-white/90 rounded-bl-md"
               }`}
             >
