@@ -1,0 +1,29 @@
+{
+  "name": "PULSE - AI-Powered Smart Dating",
+  "short_name": "PULSE",
+  "description": "Not fast dating. Not slow dating. Smart dating. AI that learns you, finds your person, and coaches you to connection.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#f43f5e",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["social", "lifestyle"],
+  "lang": "pt",
+  "dir": "ltr",
+  "prefer_related_applications": false
+}

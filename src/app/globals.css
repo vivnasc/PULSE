@@ -1,0 +1,322 @@
+@import "tailwindcss";
+
+/* ============================================
+   PULSE — Identity Visual System
+   Smart Dating. Real Chemistry.
+   ============================================ */
+
+:root {
+  /* Base (Dark-first) */
+  --background: #0E0F14;       /* Midnight Graphite */
+  --surface: #161822;           /* Deep Charcoal */
+  --foreground: #f0f0f5;
+
+  /* Pulse Gradient (Core Identity) */
+  --pulse-crimson: #E10600;     /* Crimson Red */
+  --pulse-coral: #FF3B5C;       /* Electric Coral */
+  --pulse-rose: #FF5E9C;        /* Neon Rose */
+  --pulse-magenta: #B833FF;     /* Soft Magenta */
+
+  /* AI Accent */
+  --ai-cyan: #00E5FF;           /* AI Cyan */
+  --ai-blue: #4D6BFF;           /* Neural Blue */
+
+  /* Tier Colors */
+  --spark-gray: #6B7280;
+  --flame-glow: #FF3B5C;
+  --blaze-gold: #FFB547;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Custom colors for Tailwind */
+  --color-pulse-crimson: var(--pulse-crimson);
+  --color-pulse-coral: var(--pulse-coral);
+  --color-pulse-rose: var(--pulse-rose);
+  --color-pulse-magenta: var(--pulse-magenta);
+  --color-ai-cyan: var(--ai-cyan);
+  --color-ai-blue: var(--ai-blue);
+}
+
+/* ===== Base ===== */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== Safe areas (PWA) ===== */
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ===== PULSE Gradient System ===== */
+
+/* The identity gradient — pulses like a heartbeat */
+.pulse-gradient {
+  background: linear-gradient(135deg, #E10600, #FF3B5C, #FF5E9C, #B833FF);
+  background-size: 300% 300%;
+  animation: pulse-breathe 4s ease-in-out infinite;
+}
+
+.pulse-gradient-text {
+  background: linear-gradient(135deg, #E10600, #FF3B5C, #FF5E9C, #B833FF);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: pulse-breathe 4s ease-in-out infinite;
+}
+
+/* Static gradient for non-animated contexts */
+.gradient-text {
+  background: linear-gradient(135deg, #FF3B5C, #FF5E9C, #B833FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* AI-specific gradient (blue/cyan) */
+.ai-gradient {
+  background: linear-gradient(135deg, #4D6BFF, #00E5FF);
+}
+
+.ai-gradient-text {
+  background: linear-gradient(135deg, #4D6BFF, #00E5FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Animations ===== */
+
+/* The heartbeat — core brand animation */
+@keyframes pulse-breathe {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 59, 92, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 59, 92, 0.4);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* AI glow — cyan accent */
+@keyframes ai-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+  }
+}
+
+.animate-ai-glow {
+  animation: ai-glow 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Match found — heartbeat burst */
+@keyframes match-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  25% { transform: scale(1.15); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-match-pulse {
+  animation: match-pulse 0.8s ease-in-out;
+}
+
+/* Swipe trail glow */
+@keyframes swipe-trail {
+  0% { opacity: 0.6; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(20px); }
+}
+
+/* ===== Glass effects (Glassmorphism sutil) ===== */
+.glass {
+  background: rgba(22, 24, 34, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.glass-strong {
+  background: rgba(22, 24, 34, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Glass with internal glow */
+.glass-glow {
+  background: rgba(22, 24, 34, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* ===== Tier Visual Differentiation ===== */
+
+/* Spark (Free) — Basic */
+.tier-spark {
+  --tier-color: var(--spark-gray);
+}
+
+/* Flame (Premium) — Glow effect */
+.tier-flame {
+  --tier-color: var(--flame-glow);
+  box-shadow: 0 0 20px rgba(255, 59, 92, 0.1);
+}
+
+/* Blaze (VIP) — Deep gradient + gold */
+.tier-blaze {
+  --tier-color: var(--blaze-gold);
+  background: linear-gradient(135deg, rgba(255, 59, 92, 0.05), rgba(255, 181, 71, 0.05));
+  box-shadow: 0 0 25px rgba(255, 181, 71, 0.08);
+}
+
+.badge-blaze {
+  background: linear-gradient(135deg, #FFB547, #FF8A3D);
+  animation: pulse-breathe 4s ease-in-out infinite;
+  background-size: 200% 200%;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: rgba(255, 59, 92, 0.3);
+  color: white;
+}
+
+/* ===== Focus visible ===== */
+:focus-visible {
+  outline: 2px solid rgba(255, 59, 92, 0.5);
+  outline-offset: 2px;
+}
+
+/* ===== Input autofill ===== */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #f0f0f5;
+  -webkit-box-shadow: 0 0 0px 1000px #0E0F14 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ===== Range input ===== */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF3B5C, #B833FF);
+  cursor: pointer;
+  border: 2px solid #0E0F14;
+  box-shadow: 0 0 10px rgba(255, 59, 92, 0.3);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF3B5C, #B833FF);
+  cursor: pointer;
+  border: 2px solid #0E0F14;
+}
+
+/* ===== Date input ===== */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(0.4);
+}
