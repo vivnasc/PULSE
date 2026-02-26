@@ -1,16 +1,16 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useState, useCallback, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { AppLayout } from "@/components/layout/app-layout";
 import { SwipeCard } from "@/components/discover/swipe-card";
 import { SwipeActions } from "@/components/discover/swipe-actions";
 import { Button } from "@/components/ui/button";
-import { SlidersHorizontal, Sparkles } from "lucide-react";
+import { SlidersHorizontal, Sparkles, Heart, Loader2 } from "lucide-react";
 import Image from "next/image";
 import type { Profile } from "@/types/database";
 
-// Demo profiles for development
+// Fallback demo profiles for when DB is empty or not connected
 const DEMO_PROFILES: Partial<Profile>[] = [
   {
     id: "demo-1",
@@ -25,8 +25,8 @@ const DEMO_PROFILES: Partial<Profile>[] = [
     prompts: [
       {
         prompt_id: "p1",
-        question: "My secret superpower is...",
-        answer: "Finding the best hidden cafés in any city I visit. I have a sixth sense for good coffee and cozy vibes.",
+        question: "O meu superpoder secreto é...",
+        answer: "Encontrar os melhores cafés escondidos em qualquer cidade. Tenho um sexto sentido para bom café e vibes acolhedoras.",
       },
     ],
     bio: null,
@@ -46,8 +46,8 @@ const DEMO_PROFILES: Partial<Profile>[] = [
     prompts: [
       {
         prompt_id: "p1",
-        question: "I'll passionately argue about...",
-        answer: "That the best way to explore a city is on foot. No GPS, no plan. Just walk and discover.",
+        question: "Vou ter discussões apaixonadas sobre...",
+        answer: "Que a melhor forma de explorar uma cidade é a pé. Sem GPS, sem plano. Só andar e descobrir.",
       },
     ],
     bio: null,
@@ -67,8 +67,8 @@ const DEMO_PROFILES: Partial<Profile>[] = [
     prompts: [
       {
         prompt_id: "p1",
-        question: "Green flag that wins me over:",
-        answer: "Someone who remembers small details about what I've told them. That's how you know they actually listen.",
+        question: "Green flag que me conquista:",
+        answer: "Alguém que se lembra de pequenos detalhes do que lhe contei. É assim que sabes que realmente ouvem.",
       },
     ],
     bio: null,
@@ -78,16 +78,62 @@ const DEMO_PROFILES: Partial<Profile>[] = [
 ];
 
 export default function DiscoverPage() {
-  const [profiles, setProfiles] = useState<Partial<Profile>[]>(DEMO_PROFILES);
+  const [profiles, setProfiles] = useState<Partial<Profile>[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [matchAnimation, setMatchAnimation] = useState<string | null>(null);
+
+  // Fetch profiles from API
+  useEffect(() => {
+    async function fetchProfiles() {
+      try {
+        const res = await fetch("/api/discover");
+        if (res.ok) {
+          const data = await res.json();
+          setProfiles(data.length > 0 ? data : DEMO_PROFILES);
+        } else {
+          setProfiles(DEMO_PROFILES);
+        }
+      } catch {
+        setProfiles(DEMO_PROFILES);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProfiles();
+  }, []);
 
   const handleSwipe = useCallback(
-    (direction: "left" | "right" | "up") => {
+    async (direction: "left" | "right" | "up") => {
       const profile = profiles[currentIndex];
-      // TODO: Send swipe to backend
-      console.log(`Swiped ${direction} on ${profile?.display_name}`);
+      if (!profile?.id) return;
 
+      const actionMap = { left: "pass", right: "like", up: "super_like" } as const;
+      const action = actionMap[direction];
+
+      // Optimistic update — move to next card immediately
       setCurrentIndex((prev) => prev + 1);
+
+      // Skip API call for demo profiles
+      if (profile.id.startsWith("demo-")) return;
+
+      try {
+        const res = await fetch("/api/swipes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ swipedId: profile.id, action }),
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          if (data.matched) {
+            setMatchAnimation(profile.display_name || "");
+            setTimeout(() => setMatchAnimation(null), 3000);
+          }
+        }
+      } catch {
+        // Swipe failed silently — profile already moved
+      }
     },
     [currentIndex, profiles]
   );
@@ -111,34 +157,55 @@ export default function DiscoverPage() {
           </div>
         </div>
 
+        {/* Loading */}
+        {loading && (
+          <div className="aspect-[3/4] w-full flex items-center justify-center rounded-3xl border border-white/10 bg-white/[0.02]">
+            <Loader2 className="h-8 w-8 text-[#FF3B5C] animate-spin" />
+          </div>
+        )}
+
         {/* Card stack */}
-        <div className="relative aspect-[3/4] w-full">
-          {noMoreProfiles ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.02]">
-              <Sparkles className="h-12 w-12 text-white/20 mb-4" />
-              <p className="text-white/40 text-center px-8">
-                Sem mais perfis por agora. Volta mais tarde ou expande a tua pesquisa.
-              </p>
-              <Button variant="outline" className="mt-4" onClick={() => setCurrentIndex(0)}>
-                Recomeçar
-              </Button>
-            </div>
-          ) : (
-            <AnimatePresence>
-              {visibleProfiles.map((profile, i) => (
-                <SwipeCard
-                  key={profile.id}
-                  profile={profile as Profile}
-                  onSwipe={handleSwipe}
-                  isTop={i === 0}
-                />
-              ))}
-            </AnimatePresence>
-          )}
-        </div>
+        {!loading && (
+          <div className="relative aspect-[3/4] w-full">
+            {noMoreProfiles ? (
+              <div className="absolute inset-0 flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.02]">
+                <Sparkles className="h-12 w-12 text-white/20 mb-4" />
+                <p className="text-white/40 text-center px-8">
+                  Sem mais perfis por agora. Volta mais tarde ou expande a tua pesquisa.
+                </p>
+                <Button
+                  variant="outline"
+                  className="mt-4"
+                  onClick={() => {
+                    setCurrentIndex(0);
+                    setLoading(true);
+                    fetch("/api/discover")
+                      .then((r) => r.json())
+                      .then((data) => setProfiles(data.length > 0 ? data : DEMO_PROFILES))
+                      .catch(() => setProfiles(DEMO_PROFILES))
+                      .finally(() => setLoading(false));
+                  }}
+                >
+                  Recomeçar
+                </Button>
+              </div>
+            ) : (
+              <AnimatePresence>
+                {visibleProfiles.map((profile, i) => (
+                  <SwipeCard
+                    key={profile.id}
+                    profile={profile as Profile}
+                    onSwipe={handleSwipe}
+                    isTop={i === 0}
+                  />
+                ))}
+              </AnimatePresence>
+            )}
+          </div>
+        )}
 
         {/* Actions */}
-        {!noMoreProfiles && (
+        {!loading && !noMoreProfiles && (
           <div className="mt-6">
             <SwipeActions
               onPass={() => handleSwipe("left")}
@@ -149,6 +216,34 @@ export default function DiscoverPage() {
             />
           </div>
         )}
+
+        {/* Match animation overlay */}
+        <AnimatePresence>
+          {matchAnimation && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+            >
+              <div className="text-center">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", delay: 0.1 }}
+                  className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C]"
+                >
+                  <Heart className="h-12 w-12 text-white" />
+                </motion.div>
+                <h2 className="text-3xl font-bold text-white mb-2">É um Match!</h2>
+                <p className="text-white/60">Tu e {matchAnimation} gostaram um do outro</p>
+                <Button className="mt-6" onClick={() => setMatchAnimation(null)}>
+                  Enviar Mensagem
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </AppLayout>
   );
