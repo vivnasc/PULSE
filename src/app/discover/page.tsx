@@ -21,15 +21,20 @@ const DEMO_PROFILES: Partial<Profile>[] = [
     location_city: "Maputo",
     location_country: "Mozambique",
     is_verified: true,
-    interests: ["Photography", "Travel", "Coffee", "Yoga", "Reading"],
+    interests: ["Photography", "Travel", "Coffee", "Yoga", "Reading", "Music"],
     prompts: [
       {
         prompt_id: "p1",
         question: "O meu superpoder secreto é...",
         answer: "Encontrar os melhores cafés escondidos em qualquer cidade. Tenho um sexto sentido para bom café e vibes acolhedoras.",
       },
+      {
+        prompt_id: "p2",
+        question: "Green flag que me conquista:",
+        answer: "Quando alguém tem aquela energia calma mas confiante. Não precisa de gritar para ser ouvido.",
+      },
     ],
-    bio: null,
+    bio: "Fotógrafa de coração, viajante de alma. Acredito que as melhores conexões acontecem em cafés com boa luz.",
     verification_level: "selfie",
     subscription_tier: "flame",
   },
@@ -42,15 +47,20 @@ const DEMO_PROFILES: Partial<Profile>[] = [
     location_city: "Maputo",
     location_country: "Mozambique",
     is_verified: true,
-    interests: ["Hiking", "Music", "Cooking", "Surfing", "Tech"],
+    interests: ["Hiking", "Music", "Cooking", "Surfing", "Tech", "Comedy"],
     prompts: [
       {
         prompt_id: "p1",
         question: "Vou ter discussões apaixonadas sobre...",
         answer: "Que a melhor forma de explorar uma cidade é a pé. Sem GPS, sem plano. Só andar e descobrir.",
       },
+      {
+        prompt_id: "p2",
+        question: "Ensina-me algo em 30 segundos:",
+        answer: "O ingrediente secreto de qualquer prato é o tempo. Cozinhar devagar com atenção muda tudo.",
+      },
     ],
-    bio: null,
+    bio: "Chef amador, surfista de fim de semana. Prometo cozinhar melhor do que danço (o que não é difícil).",
     verification_level: "selfie",
     subscription_tier: "free",
   },
@@ -63,15 +73,72 @@ const DEMO_PROFILES: Partial<Profile>[] = [
     location_city: "Beira",
     location_country: "Mozambique",
     is_verified: false,
-    interests: ["Dance", "Art", "Fashion", "Movies", "Meditation"],
+    interests: ["Dance", "Art", "Fashion", "Movies", "Meditation", "Writing"],
     prompts: [
       {
         prompt_id: "p1",
         question: "Green flag que me conquista:",
         answer: "Alguém que se lembra de pequenos detalhes do que lhe contei. É assim que sabes que realmente ouvem.",
       },
+      {
+        prompt_id: "p2",
+        question: "Minha vibe é...",
+        answer: "Playlist chill a tocar, velas acesas, e uma conversa profunda sobre o universo. Low-key mas intensa.",
+      },
     ],
-    bio: null,
+    bio: "Artista e sonhadora. Acho beleza nos detalhes que a maioria ignora.",
+    verification_level: "none",
+    subscription_tier: "free",
+  },
+  {
+    id: "demo-4",
+    display_name: "Mateo",
+    birth_date: "1997-04-19",
+    gender: "male",
+    photos: [],
+    location_city: "Maputo",
+    location_country: "Mozambique",
+    is_verified: true,
+    interests: ["Fitness", "Podcasts", "Cycling", "Gaming", "Animals", "Travel"],
+    prompts: [
+      {
+        prompt_id: "p1",
+        question: "A coisa mais aleatória que me faz rir...",
+        answer: "Vídeos de gatos a falharem saltos. Não importa o dia que estou a ter — funciona sempre.",
+      },
+      {
+        prompt_id: "p2",
+        question: "Nunca vou mudar de opinião sobre...",
+        answer: "Pizza fria ao pequeno-almoço é superior a qualquer cereal. Esta é a colina onde escolho morrer.",
+      },
+    ],
+    bio: "Engenheiro de dia, gamer de noite. O meu golden retriever tem mais seguidores no Instagram que eu.",
+    verification_level: "selfie",
+    subscription_tier: "free",
+  },
+  {
+    id: "demo-5",
+    display_name: "Luna",
+    birth_date: "2000-08-03",
+    gender: "female",
+    photos: [],
+    location_city: "Nampula",
+    location_country: "Mozambique",
+    is_verified: false,
+    interests: ["Music", "Yoga", "Volunteering", "Coffee", "Hiking", "Art"],
+    prompts: [
+      {
+        prompt_id: "p1",
+        question: "Pequena coisa que me faz apaixonar:",
+        answer: "Quando manda uma música a dizer 'isto fez-me pensar em ti'. Pronto, ganhou.",
+      },
+      {
+        prompt_id: "p2",
+        question: "O meu superpoder secreto é...",
+        answer: "Fazer qualquer pessoa introvertida sentir-se confortável. Tenho um dom para silêncios que não são awkward.",
+      },
+    ],
+    bio: "Professora de yoga, amante de nascer do sol. Acredito que vulnerabilidade é a maior forma de coragem.",
     verification_level: "none",
     subscription_tier: "free",
   },
@@ -191,14 +258,17 @@ export default function DiscoverPage() {
               </div>
             ) : (
               <AnimatePresence>
-                {visibleProfiles.map((profile, i) => (
-                  <SwipeCard
-                    key={profile.id}
-                    profile={profile as Profile}
-                    onSwipe={handleSwipe}
-                    isTop={i === 0}
-                  />
-                ))}
+                {visibleProfiles
+                  .slice()
+                  .reverse()
+                  .map((profile, i, arr) => (
+                    <SwipeCard
+                      key={profile.id}
+                      profile={profile as Profile}
+                      onSwipe={handleSwipe}
+                      isTop={i === arr.length - 1}
+                    />
+                  ))}
               </AnimatePresence>
             )}
           </div>
@@ -221,25 +291,75 @@ export default function DiscoverPage() {
         <AnimatePresence>
           {matchAnimation && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center"
             >
-              <div className="text-center">
+              {/* Backdrop */}
+              <motion.div
+                className="absolute inset-0 bg-black/80 backdrop-blur-md"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              />
+
+              {/* Radial glow */}
+              <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", delay: 0.1 }}
-                  className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C]"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 2.5, opacity: 0.15 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="h-48 w-48 rounded-full bg-gradient-to-r from-[#FF3B5C] to-[#FF5E9C] blur-3xl"
+                />
+              </div>
+
+              <div className="relative text-center z-10">
+                {/* Heart icon */}
+                <motion.div
+                  initial={{ scale: 0, rotate: -30 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 15, delay: 0.15 }}
+                  className="mx-auto mb-6 flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-[#FF3B5C] to-[#FF5E9C] shadow-2xl shadow-[#FF3B5C]/40"
                 >
-                  <Heart className="h-12 w-12 text-white" />
+                  <Heart className="h-14 w-14 text-white drop-shadow-lg" fill="white" />
                 </motion.div>
-                <h2 className="text-3xl font-bold text-white mb-2">É um Match!</h2>
-                <p className="text-white/60">Tu e {matchAnimation} gostaram um do outro</p>
-                <Button className="mt-6" onClick={() => setMatchAnimation(null)}>
-                  Enviar Mensagem
-                </Button>
+
+                {/* Text */}
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-4xl font-black text-white mb-2 tracking-tight"
+                >
+                  É um Match!
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-white/60 text-lg"
+                >
+                  Tu e <span className="text-[#FF5E9C] font-semibold">{matchAnimation}</span> gostaram um do outro
+                </motion.p>
+
+                {/* Actions */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="mt-8 flex flex-col gap-3 items-center"
+                >
+                  <Button size="lg" className="min-w-[200px]" onClick={() => setMatchAnimation(null)}>
+                    Enviar Mensagem
+                    <Heart className="ml-2 h-4 w-4" />
+                  </Button>
+                  <button
+                    onClick={() => setMatchAnimation(null)}
+                    className="text-sm text-white/40 hover:text-white/60 transition-colors"
+                  >
+                    Continuar a descobrir
+                  </button>
+                </motion.div>
               </div>
             </motion.div>
           )}
