@@ -8,10 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { createClient } from "@/lib/supabase/client";
 import {
-  ArrowRight, ArrowLeft, Camera, Mic, MapPin,
-  Heart, Sparkles, Check
+  ArrowRight, ArrowLeft, Mic, MapPin,
+  Heart, Sparkles,
 } from "lucide-react";
 import { CREATIVE_PROMPTS } from "@/lib/constants";
+import { PhotoUpload } from "@/components/ui/photo-upload";
 
 type Step = "gender" | "preference" | "photos" | "prompts" | "voice" | "location" | "interests" | "complete";
 
@@ -242,23 +243,12 @@ export default function OnboardingPage() {
                 <div>
                   <h2 className="text-2xl font-bold text-white mb-2">Adiciona fotos</h2>
                   <p className="text-white/50 mb-6">Mostra o teu melhor. Podes adicionar mais depois.</p>
-                  <div className="grid grid-cols-3 gap-3">
-                    {[0, 1, 2, 3, 4, 5].map((i) => (
-                      <button
-                        key={i}
-                        className={`aspect-[3/4] rounded-xl border-2 border-dashed flex items-center justify-center transition-all ${
-                          i === 0
-                            ? "border-[#FF3B5C]/50 bg-[#FF3B5C]/10"
-                            : "border-white/10 bg-white/5 hover:bg-white/10"
-                        }`}
-                      >
-                        <Camera className="h-6 w-6 text-white/30" />
-                      </button>
-                    ))}
-                  </div>
-                  <p className="text-xs text-white/30 mt-4 text-center">
-                    As fotos serão verificadas por IA para garantir que és tu.
-                  </p>
+                  <PhotoUpload
+                    photos={formData.photos}
+                    onPhotosChange={(newPhotos) =>
+                      setFormData({ ...formData, photos: newPhotos })
+                    }
+                  />
                 </div>
               )}
 

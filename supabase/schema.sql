@@ -385,3 +385,47 @@ CREATE OR REPLACE TRIGGER on_auth_user_created
 -- Enable realtime for messages (chat)
 ALTER PUBLICATION supabase_realtime ADD TABLE public.messages;
 ALTER PUBLICATION supabase_realtime ADD TABLE public.matches;
+
+-- ============================================
+-- STORAGE (Profile Photos)
+-- ============================================
+
+-- Create the photos bucket
+INSERT INTO storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+VALUES (
+  'photos',
+  'photos',
+  TRUE,
+  5242880, -- 5MB max
+  ARRAY['image/jpeg', 'image/png', 'image/webp', 'image/heic']
+)
+ON CONFLICT (id) DO NOTHING;
+
+-- Anyone can view photos (public bucket)
+CREATE POLICY "Public photo access"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'photos');
+
+-- Users can upload to their own folder: photos/{user_id}/*
+CREATE POLICY "Users can upload own photos"
+  ON storage.objects FOR INSERT
+  WITH CHECK (
+    bucket_id = 'photos'
+    AND auth.uid()::text = (storage.foldername(name))[1]
+  );
+
+-- Users can update their own photos
+CREATE POLICY "Users can update own photos"
+  ON storage.objects FOR UPDATE
+  USING (
+    bucket_id = 'photos'
+    AND auth.uid()::text = (storage.foldername(name))[1]
+  );
+
+-- Users can delete their own photos
+CREATE POLICY "Users can delete own photos"
+  ON storage.objects FOR DELETE
+  USING (
+    bucket_id = 'photos'
+    AND auth.uid()::text = (storage.foldername(name))[1]
+  );

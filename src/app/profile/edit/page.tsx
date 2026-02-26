@@ -2,23 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   ArrowLeft,
-  Camera,
   Mic,
   Save,
   Plus,
   X,
-  GripVertical,
   Loader2,
 } from "lucide-react";
 import { CREATIVE_PROMPTS } from "@/lib/constants";
 import { createClient } from "@/lib/supabase/client";
+import { PhotoUpload } from "@/components/ui/photo-upload";
 import type { Profile, PromptAnswer } from "@/types/database";
 
 const ALL_INTERESTS = [
@@ -163,36 +161,11 @@ export default function EditProfilePage() {
       <div className="mx-auto max-w-md px-4 py-6 space-y-8">
         {/* Photos */}
         <section>
-          <h3 className="text-sm font-medium text-white/60 mb-3">
-            Fotos
-            <span className="text-white/30 ml-1">(arrasta para reordenar)</span>
-          </h3>
-          <div className="grid grid-cols-3 gap-2">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.02 }}
-                className={`relative aspect-[3/4] rounded-xl border-2 border-dashed flex items-center justify-center cursor-pointer transition-colors overflow-hidden ${
-                  i === 0
-                    ? "border-[#FF3B5C]/50 bg-[#FF3B5C]/10"
-                    : "border-white/10 bg-white/5 hover:bg-white/10"
-                }`}
-              >
-                {photos[i] ? (
-                  <img src={photos[i]} alt="" className="h-full w-full object-cover" />
-                ) : (
-                  <Camera className="h-6 w-6 text-white/30" />
-                )}
-                {i === 0 && !photos[i] && (
-                  <span className="absolute bottom-1 text-[10px] text-[#FF3B5C] font-medium">Principal</span>
-                )}
-                <div className="absolute top-1 right-1 opacity-0 hover:opacity-100 transition-opacity">
-                  <GripVertical className="h-3 w-3 text-white/30" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <p className="text-xs text-white/30 mt-2">Até 6 fotos. A primeira é a foto principal do perfil.</p>
+          <h3 className="text-sm font-medium text-white/60 mb-3">Fotos</h3>
+          <PhotoUpload
+            photos={photos}
+            onPhotosChange={setPhotos}
+          />
         </section>
 
         {/* Display name */}
