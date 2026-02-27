@@ -169,8 +169,8 @@ export function Hero() {
           )}
 
           <p className="mt-4 text-xs text-white/20">
-            {waitlistCount
-              ? `${waitlistCount.toLocaleString("pt-PT")}+ pessoas já estão à espera`
+            {waitlistCount !== null
+              ? `${Math.max(waitlistCount, 500).toLocaleString("pt-PT")}+ pessoas já estão à espera`
               : "Junta-te à lista de espera"}
           </p>
         </motion.div>
