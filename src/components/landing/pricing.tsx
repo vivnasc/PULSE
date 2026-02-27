@@ -1,67 +1,105 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Check, Sparkles, Crown, Zap, ArrowRight } from "lucide-react";
 
-const tiers = [
-  {
-    name: "Spark",
-    icon: Zap,
-    vibe: "Para experimentar",
-    price: "Grátis",
-    period: "",
-    features: [
-      "10 swipes por dia",
-      "Chat básico",
-      "1 conversa com avatar IA por semana",
-      "Verificação básica",
-    ],
-    cta: "Começar Grátis",
-    variant: "outline" as const,
-    accent: "#6B7280",
-  },
-  {
-    name: "Flame",
-    icon: Sparkles,
-    vibe: "Para quem quer encontrar",
-    price: "$14.99",
-    period: "/mês",
-    features: [
-      "Tudo ilimitado — swipes, matches, chat",
-      "Avatar IA e clonagem de voz",
-      "Coach de encontros em tempo real",
-      "IA emocional + compatibilidade preditiva",
-      "Matchmaker pessoal com IA",
-      "Ver quem te deu like",
-      "Zero anúncios",
-    ],
-    cta: "Começar a Sentir",
-    variant: "default" as const,
-    accent: "#FF3B5C",
-    popular: true,
-  },
-  {
-    name: "Blaze",
-    icon: Crown,
-    vibe: "A experiência completa",
-    price: "$34.99",
-    period: "/mês",
-    features: [
-      "Tudo do Flame",
-      "Concierge IA 24/7",
-      "Simulador de encontros ilimitado",
-      "Previsão de relação (6-12 meses)",
-      "Modo incógnito + proteção anti-ghosting",
-      "Badge VIP + suporte prioritário",
-    ],
-    cta: "Ir de Blaze",
-    variant: "outline" as const,
-    accent: "#FFB547",
-  },
-];
+type Region = "MZN" | "BRL" | "EUR" | "USD";
+
+const REGIONAL_PRICING: Record<Region, { flame: string; blaze: string; symbol: string }> = {
+  MZN: { flame: "500 MT", blaze: "1.200 MT", symbol: "MT" },
+  BRL: { flame: "R$39,90", blaze: "R$99,90", symbol: "R$" },
+  EUR: { flame: "9,99€", blaze: "24,99€", symbol: "€" },
+  USD: { flame: "$14.99", blaze: "$34.99", symbol: "$" },
+};
+
+function detectRegion(): Region {
+  if (typeof window === "undefined") return "USD";
+
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+  const lang = navigator.language || "";
+
+  // Mozambique
+  if (tz.includes("Maputo") || lang.startsWith("pt-MZ")) return "MZN";
+  // Brazil
+  if (tz.includes("Sao_Paulo") || tz.includes("Brasilia") || tz.includes("Fortaleza") || tz.includes("Manaus") || lang === "pt-BR") return "BRL";
+  // Europe / Portugal
+  if (tz.includes("Lisbon") || tz.includes("Europe/") || lang.startsWith("pt-PT")) return "EUR";
+
+  return "USD";
+}
+
+function getTiers(region: Region) {
+  const prices = REGIONAL_PRICING[region];
+
+  return [
+    {
+      name: "Spark",
+      icon: Zap,
+      vibe: "Para experimentar",
+      price: "Grátis",
+      period: "",
+      features: [
+        "10 swipes por dia",
+        "Chat básico",
+        "1 conversa com avatar IA por semana",
+        "Verificação básica",
+      ],
+      cta: "Começar Grátis",
+      variant: "outline" as const,
+      accent: "#6B7280",
+    },
+    {
+      name: "Flame",
+      icon: Sparkles,
+      vibe: "Para quem quer encontrar",
+      price: prices.flame,
+      period: "/mês",
+      features: [
+        "Tudo ilimitado — swipes, matches, chat",
+        "Avatar IA e clonagem de voz",
+        "Coach de encontros em tempo real",
+        "IA emocional + compatibilidade preditiva",
+        "Matchmaker pessoal com IA",
+        "Ver quem te deu like",
+        "Zero anúncios",
+      ],
+      cta: "Começar a Sentir",
+      variant: "default" as const,
+      accent: "#FF3B5C",
+      popular: true,
+    },
+    {
+      name: "Blaze",
+      icon: Crown,
+      vibe: "A experiência completa",
+      price: prices.blaze,
+      period: "/mês",
+      features: [
+        "Tudo do Flame",
+        "Concierge IA 24/7",
+        "Simulador de encontros ilimitado",
+        "Previsão de relação (6-12 meses)",
+        "Modo incógnito + proteção anti-ghosting",
+        "Badge VIP + suporte prioritário",
+      ],
+      cta: "Ir de Blaze",
+      variant: "outline" as const,
+      accent: "#FFB547",
+    },
+  ];
+}
 
 export function Pricing() {
+  const [region, setRegion] = useState<Region>("USD");
+
+  useEffect(() => {
+    setRegion(detectRegion());
+  }, []);
+
+  const tiers = getTiers(region);
+
   return (
     <section className="relative py-28 px-4" id="pricing">
       <div className="mx-auto max-w-5xl">
@@ -129,14 +167,27 @@ export function Pricing() {
           ))}
         </div>
 
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mt-8 text-xs text-white/20"
+          className="text-center mt-8 space-y-2"
         >
-          Cancela quando quiseres. Sem compromisso. Sem truques.
-        </motion.p>
+          <p className="text-xs text-white/20">
+            Cancela quando quiseres. Sem compromisso. Sem truques.
+          </p>
+          {region !== "USD" && (
+            <p className="text-[10px] text-white/15">
+              Preços em {REGIONAL_PRICING[region].symbol} para a tua região.{" "}
+              <button
+                onClick={() => setRegion("USD")}
+                className="text-white/25 underline hover:text-white/40 transition-colors"
+              >
+                Ver em USD
+              </button>
+            </p>
+          )}
+        </motion.div>
       </div>
     </section>
   );

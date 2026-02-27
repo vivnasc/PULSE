@@ -19,6 +19,7 @@ export function Hero() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [frustrationIndex, setFrustrationIndex] = useState(0);
+  const [waitlistCount, setWaitlistCount] = useState<number | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,6 +27,16 @@ export function Hero() {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  // Fetch real waitlist count
+  useEffect(() => {
+    fetch("/api/waitlist")
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (data?.count) setWaitlistCount(data.count);
+      })
+      .catch(() => {});
+  }, [submitted]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -140,7 +151,7 @@ export function Hero() {
                 required
               />
               <Button type="submit" size="lg" className="w-full sm:w-auto whitespace-nowrap">
-                Quero Entrar
+                Juntar à Lista
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </form>
@@ -158,7 +169,9 @@ export function Hero() {
           )}
 
           <p className="mt-4 text-xs text-white/20">
-            2.000+ pessoas já estão à espera
+            {waitlistCount
+              ? `${waitlistCount.toLocaleString("pt-PT")}+ pessoas já estão à espera`
+              : "Junta-te à lista de espera"}
           </p>
         </motion.div>
       </div>
